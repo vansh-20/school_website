@@ -493,57 +493,57 @@
     }
     .hero-stats { position: relative; z-index: 5; }
 
-    /* ── MOBILE: full photo visible, nothing cropped ── */
+    /* ── MOBILE: photo fills full width, auto height = no black bars ── */
     @media (max-width: 768px) {
       .ticker-wrap { margin-top: 60px !important; }
 
-      /* Make slider exactly fill remaining screen after navbar + ticker */
+      /* Let slider height be driven by the photo aspect ratio */
       #heroSlider {
-        height: calc(100svh - 98px);
-        min-height: 280px;
+        height: auto !important;
+        min-height: unset !important;
+        aspect-ratio: 4 / 3;
         background: #111;
+        overflow: hidden;
       }
 
-      /* Show FULL photo — no cropping */
+      /* Photo fills the box edge-to-edge, cover keeps it cropped nicely 
+         but now the BOX itself is the same ratio as the photo so nothing is cut */
       #heroSlider .hslide img {
-        object-fit: contain !important;
+        object-fit: cover !important;
         object-position: center center !important;
-        background: #111;
+        width: 100% !important;
+        height: 100% !important;
       }
 
-      /* Dark scrim only at bottom so buttons are readable */
-      .hslide > div:first-child[style*="gradient"] {
-        background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%) !important;
-      }
-
-      /* Buttons — compact, stacked, at very bottom */
+      /* Buttons row — small, inline, at bottom of photo */
       .hslide > div[style*="bottom"] {
-        bottom: 16px !important;
-        padding: 0 16px !important;
+        bottom: 40px !important;
+        padding: 0 12px !important;
         width: 100% !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: center !important;
         gap: 8px !important;
-        flex-wrap: wrap !important;
+        flex-wrap: nowrap !important;
       }
       .hslide .btn-sun {
-        padding: 9px 18px !important;
+        padding: 8px 16px !important;
         font-size: 12px !important;
         border-radius: 99px !important;
         white-space: nowrap !important;
+        box-shadow: none !important;
       }
       .hslide .btn-outline {
-        padding: 9px 18px !important;
+        padding: 8px 16px !important;
         font-size: 12px !important;
         border-radius: 99px !important;
         white-space: nowrap !important;
       }
 
-      /* Arrows and dots */
-      #slideDots { bottom: 8px !important; gap: 6px !important; }
-      #slidePrev { left: 8px !important; width: 34px !important; height: 34px !important; font-size: 18px !important; top: 45% !important; }
-      #slideNext { right: 8px !important; width: 34px !important; height: 34px !important; font-size: 18px !important; top: 45% !important; }
+      /* Dots and arrows */
+      #slideDots { bottom: 10px !important; gap: 6px !important; }
+      #slidePrev { left: 8px !important; width: 32px !important; height: 32px !important; font-size: 16px !important; }
+      #slideNext { right: 8px !important; width: 32px !important; height: 32px !important; font-size: 16px !important; }
     }
     /* big decorative sun */
     .hero-sun-bg {
