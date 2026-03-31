@@ -472,25 +472,78 @@
       background: #111;
       display: flex; flex-direction: column; position: relative; overflow: hidden;
     }
-    /* heroSlider is the element that gives the section its visible height */
     #heroSlider {
-      position: relative !important;
+      position: relative;
       width: 100%;
-      height: 100vh;
+      height: calc(100vh - 108px); /* desktop: minus navbar(70) + ticker(38) */
+      min-height: 480px;
       z-index: 0;
       overflow: hidden;
-      flex: 1;
     }
     #heroSlider .hslide {
       position: absolute;
       inset: 0;
     }
     #heroSlider .hslide img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
     }
     .hero-stats { position: relative; z-index: 5; }
+
+    /* ── MOBILE: full photo visible, nothing cropped ── */
     @media (max-width: 768px) {
-      #heroSlider { height: calc(100svh - 38px); }
+      .ticker-wrap { margin-top: 60px !important; }
+
+      /* Make slider exactly fill remaining screen after navbar + ticker */
+      #heroSlider {
+        height: calc(100svh - 98px);
+        min-height: 280px;
+        background: #111;
+      }
+
+      /* Show FULL photo — no cropping */
+      #heroSlider .hslide img {
+        object-fit: contain !important;
+        object-position: center center !important;
+        background: #111;
+      }
+
+      /* Dark scrim only at bottom so buttons are readable */
+      .hslide > div:first-child[style*="gradient"] {
+        background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%) !important;
+      }
+
+      /* Buttons — compact, stacked, at very bottom */
+      .hslide > div[style*="bottom"] {
+        bottom: 16px !important;
+        padding: 0 16px !important;
+        width: 100% !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+      }
+      .hslide .btn-sun {
+        padding: 9px 18px !important;
+        font-size: 12px !important;
+        border-radius: 99px !important;
+        white-space: nowrap !important;
+      }
+      .hslide .btn-outline {
+        padding: 9px 18px !important;
+        font-size: 12px !important;
+        border-radius: 99px !important;
+        white-space: nowrap !important;
+      }
+
+      /* Arrows and dots */
+      #slideDots { bottom: 8px !important; gap: 6px !important; }
+      #slidePrev { left: 8px !important; width: 34px !important; height: 34px !important; font-size: 18px !important; top: 45% !important; }
+      #slideNext { right: 8px !important; width: 34px !important; height: 34px !important; font-size: 18px !important; top: 45% !important; }
     }
     /* big decorative sun */
     .hero-sun-bg {
@@ -1161,20 +1214,7 @@
       .nav-brand { max-width: calc(100vw - 60px); }
       .nav-brand-name { font-size: 17px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-      /* --- Hero: ensure it fills the screen --- */
-      #home { min-height: 100svh; }
-      #slidePrev, #slideNext { width: 36px !important; height: 36px !important; font-size: 16px !important; }
-      #slideDots { bottom: 90px !important; gap: 7px !important; }
-      .hslide > div:last-child {
-        bottom: 20px !important; gap: 8px !important;
-        padding: 0 14px; width: 100%; box-sizing: border-box;
-        flex-direction: column; align-items: center;
-      }
-      .hslide > div:last-child .btn-sun,
-      .hslide > div:last-child .btn-outline {
-        padding: 11px 0 !important; font-size: 13px !important;
-        width: 100%; max-width: 260px; text-align: center;
-      }
+      /* Hero sizing handled in dedicated @media (max-width:768px) block above */
 
       /* --- Stats bar: 2×2 grid, centered, no overflow --- */
       .hero-stats-inner {
