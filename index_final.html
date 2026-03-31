@@ -222,75 +222,113 @@
       display: flex; align-items: center; justify-content: center;
       background: rgba(0,0,0,.6); backdrop-filter: blur(6px);
       animation: fadeInPop .4s ease;
-      padding: 20px;
+      padding: 16px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     @keyframes fadeInPop { from{opacity:0} to{opacity:1} }
     .kzp-box {
-      background: #fff; border-radius: 28px; max-width: 560px; width: 100%;
+      background: #fff; border-radius: 28px; max-width: 520px; width: 100%;
       overflow: hidden; position: relative;
       box-shadow: 0 32px 80px rgba(0,0,0,.35);
       animation: slideUpPop .45s cubic-bezier(.34,1.56,.64,1);
+      max-height: calc(100dvh - 32px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      flex-shrink: 0;
     }
     @keyframes slideUpPop { from{transform:translateY(60px);opacity:0} to{transform:translateY(0);opacity:1} }
     .kzp-top {
       background: linear-gradient(135deg, #7c3aed, #db2777, #f59e0b);
-      padding: 36px 32px 28px; text-align: center; position: relative; overflow: hidden;
+      padding: 32px 28px 24px; text-align: center; position: relative; overflow: hidden;
     }
     .kzp-top::before {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      content:''; position:absolute; inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
     .kzp-new-tag {
-      display: inline-block; background: #fde68a; color: #7c2d12;
-      font-size: 10px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase;
-      padding: 4px 14px; border-radius: 99px; margin-bottom: 14px;
-      position: relative; z-index: 1;
-      animation: bouncePop 1s ease infinite;
+      display:inline-block; background:#fde68a; color:#7c2d12;
+      font-size:10px; font-weight:800; letter-spacing:.15em; text-transform:uppercase;
+      padding:4px 14px; border-radius:99px; margin-bottom:12px;
+      position:relative; z-index:1; animation:bouncePop 1s ease infinite;
     }
     @keyframes bouncePop { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-    .kzp-emoji { font-size: 3.5rem; display: block; margin-bottom: 8px; position: relative; z-index: 1; }
+    .kzp-emoji { font-size:3rem; display:block; margin-bottom:6px; position:relative; z-index:1; }
     .kzp-top h2 {
-      font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700;
-      color: #fff; position: relative; z-index: 1; line-height: 1.2; margin-bottom: 6px;
+      font-family:'Cormorant Garamond',serif; font-size:1.85rem; font-weight:700;
+      color:#fff; position:relative; z-index:1; line-height:1.2; margin-bottom:5px;
     }
-    .kzp-top p { font-size: 13px; color: rgba(255,255,255,.85); position: relative; z-index: 1; }
-    .kzp-body { padding: 24px 32px 28px; }
-    .kzp-classes { display: flex; gap: 10px; justify-content: center; margin-bottom: 18px; flex-wrap: wrap; }
+    .kzp-top p { font-size:13px; color:rgba(255,255,255,.85); position:relative; z-index:1; }
+    .kzp-body { padding:20px 28px 24px; }
+    .kzp-classes { display:flex; gap:8px; justify-content:center; margin-bottom:16px; flex-wrap:wrap; }
     .kzp-class {
-      display: flex; align-items: center; gap: 7px;
-      background: #fef3c7; border: 1.5px solid #fde68a; border-radius: 12px;
-      padding: 8px 16px; font-size: 13px; font-weight: 700; color: #92400e;
+      display:flex; align-items:center; gap:6px;
+      background:#fef3c7; border:1.5px solid #fde68a; border-radius:12px;
+      padding:7px 14px; font-size:13px; font-weight:700; color:#92400e;
     }
-    .kzp-class span { font-size: 1.2rem; }
-    .kzp-features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
+    .kzp-class span { font-size:1.1rem; }
+    .kzp-features { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:18px; }
     .kzp-feat {
-      display: flex; align-items: center; gap: 8px;
-      background: #f8fafc; border-radius: 10px; padding: 10px 12px;
-      font-size: 12.5px; font-weight: 500; color: #334155;
+      display:flex; align-items:center; gap:7px;
+      background:#f8fafc; border-radius:10px; padding:9px 11px;
+      font-size:12.5px; font-weight:500; color:#334155;
     }
-    .kzp-feat span { font-size: 1.1rem; }
-    .kzp-btns { display: flex; gap: 10px; }
+    .kzp-feat span { font-size:1.1rem; }
+    .kzp-btns { display:flex; gap:10px; }
     .kzp-btn-main {
-      flex: 1; padding: 13px; border-radius: 14px;
-      background: linear-gradient(135deg, #7c3aed, #db2777);
-      color: #fff; font-size: 14px; font-weight: 700; border: none;
-      cursor: pointer; font-family: inherit; transition: all .2s;
+      flex:1; padding:14px 12px; border-radius:14px;
+      background:linear-gradient(135deg,#7c3aed,#db2777);
+      color:#fff; font-size:14px; font-weight:700; border:none;
+      cursor:pointer; font-family:inherit; transition:all .2s;
+      min-height:50px; -webkit-tap-highlight-color:transparent;
     }
-    .kzp-btn-main:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,.4); }
+    .kzp-btn-main:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(124,58,237,.4); }
     .kzp-btn-close {
-      padding: 13px 20px; border-radius: 14px; border: 1.5px solid #e2e8f0;
-      background: #fff; color: #64748b; font-size: 13px; font-weight: 600;
-      cursor: pointer; font-family: inherit; transition: all .2s;
+      padding:14px 18px; border-radius:14px; border:1.5px solid #e2e8f0;
+      background:#fff; color:#64748b; font-size:13px; font-weight:600;
+      cursor:pointer; font-family:inherit; transition:all .2s;
+      min-height:50px; -webkit-tap-highlight-color:transparent;
     }
-    .kzp-btn-close:hover { background: #f1f5f9; }
+    .kzp-btn-close:hover { background:#f1f5f9; }
     .kzp-close-x {
-      position: absolute; top: 12px; right: 14px; z-index: 10;
-      width: 32px; height: 32px; border-radius: 50%; border: none; cursor: pointer;
-      background: rgba(255,255,255,.2); color: #fff; font-size: 16px;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .2s;
+      position:absolute; top:10px; right:10px; z-index:10;
+      width:44px; height:44px; border-radius:50%; border:none; cursor:pointer;
+      background:rgba(255,255,255,.2); color:#fff; font-size:18px;
+      display:flex; align-items:center; justify-content:center;
+      transition:background .2s; -webkit-tap-highlight-color:transparent;
     }
-    .kzp-close-x:hover { background: rgba(255,255,255,.35); }
+    .kzp-close-x:hover { background:rgba(255,255,255,.35); }
+    /* Popup — phone: slides up from bottom */
+    @media (max-width:600px) {
+      #kzPopup { align-items:flex-end; padding:0; }
+      .kzp-box {
+        border-radius:24px 24px 0 0; max-height:92dvh;
+        width:100%; max-width:100%;
+      }
+      .kzp-top { padding:24px 18px 18px; }
+      .kzp-top h2 { font-size:1.45rem; }
+      .kzp-emoji { font-size:2.5rem; }
+      .kzp-body { padding:16px 18px 28px; }
+      .kzp-features { grid-template-columns:1fr 1fr; gap:7px; margin-bottom:14px; }
+      .kzp-feat { padding:8px 9px; font-size:12px; }
+      .kzp-btns { flex-direction:column; gap:8px; }
+      .kzp-btn-main, .kzp-btn-close { width:100%; padding:15px; font-size:14px; }
+    }
+    /* Popup — very small phones */
+    @media (max-width:380px) {
+      .kzp-top { padding:18px 14px 14px; }
+      .kzp-top h2 { font-size:1.25rem; }
+      .kzp-emoji { font-size:2rem; margin-bottom:3px; }
+      .kzp-features { grid-template-columns:1fr; gap:6px; }
+      .kzp-classes { gap:6px; }
+      .kzp-class { padding:6px 10px; font-size:12px; }
+      .kzp-new-tag { font-size:9px; }
+    }
+    /* Popup — iPad landscape/portrait: centered modal */
+    @media (min-width:601px) and (max-width:1024px) {
+      #kzPopup { align-items:center; padding:20px; }
+      .kzp-box { max-width:500px; border-radius:24px; max-height:calc(100dvh - 40px); }
+    }
 
     /* ===== KID ZONE SECTION ===== */
     #kidzone {
@@ -463,8 +501,17 @@
     /* Stats */
     .hero-stats { background: linear-gradient(90deg, #7c2d12 0%, #92400e 40%, #b45309 100%); border-top: 3px solid #f59e0b; box-shadow: 0 -2px 24px rgba(245,158,11,.25); }
     .hero-stats-inner { max-width: 1200px; margin: 0 auto; padding: 26px 24px; display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; font-weight: 700; color: #fde68a; }
-    .stat-lbl { font-size: 11.5px; color: rgba(255,255,255,.75); margin-top: 2px; }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; font-weight: 700; color: #fde68a; display: block; line-height: 1.1; }
+    .stat-lbl { font-size: 11.5px; color: rgba(255,255,255,.75); margin-top: 2px; display: block; }
+    @media (max-width: 640px) {
+      .hero-stats-inner { grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+      .stat-item { padding: 18px 10px; border-right: 1px solid rgba(255,255,255,.1); border-bottom: 1px solid rgba(255,255,255,.1); }
+      .stat-item:nth-child(2n) { border-right: none; }
+      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+      .stat-num { font-size: 1.75rem; }
+      .stat-lbl { font-size: 11px; }
+    }
 
     /* ===== ABOUT ===== */
     #about { background: var(--cream); }
@@ -833,36 +880,201 @@
       .gallery-grid { grid-template-columns: repeat(3,1fr); }
       .disc-items { grid-template-columns: repeat(2,1fr); }
     }
+
+    /* ===== TABLET (768px) ===== */
     @media (max-width: 768px) {
-      .section-pad { padding: 60px 0; }
-      .nav-links, .nav-cta, .nav-socials, .nav-sep { display: none; }
+      .section-pad { padding: 52px 0; }
+      .container { padding: 0 16px; }
+      .nav-links, .nav-cta, .nav-socials, .nav-sep { display: none !important; }
+      .nav-inner { overflow: hidden; max-width: 100%; }
       .hamburger { display: flex; }
       .mobile-menu { display: block; }
-      .about-grid, .adm-grid, .contact-main { grid-template-columns: 1fr; }
-      .hl-grid { grid-template-columns: 1fr 1fr; }
-      .notices-grid { grid-template-columns: 1fr 1fr; }
-      .hero-stats-inner { grid-template-columns: repeat(2,1fr); }
+
+      /* Hero */
+      .hero-content { padding: 88px 16px 48px; }
+      .hero-h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-btns { gap: 10px; }
+      .btn-sun, .btn-outline { padding: 11px 22px; font-size: 14px; }
+      .hero-sun-bg { width: 340px; height: 340px; right: -60px; opacity: .3; }
+
+      /* Stats bar — handled by dedicated @media (max-width:640px) block above */
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px; }
+      .about-visual { min-height: 300px; padding: 28px; }
+      .about-kpis { grid-template-columns: 1fr 1fr; }
+      .hl-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+
+      /* Admissions */
+      .adm-grid { grid-template-columns: 1fr; gap: 32px; }
+      .fld-row { grid-template-columns: 1fr; gap: 0; }
+      .form-box-header { padding: 22px 20px 18px; }
+      .form-box-body { padding: 20px 20px 24px; }
+
+      /* Gallery */
       .gallery-grid { grid-template-columns: repeat(2,1fr); }
-      .footer-grid { grid-template-columns: 1fr; }
-      .contact-cards { grid-template-columns: 1fr 1fr; }
+      .gallery-tabs { gap: 6px; flex-wrap: wrap; justify-content: center; }
+      .gtab { font-size: 12px; padding: 6px 14px; }
+
+      /* Notices */
+      .notices-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+
+      /* Facilities */
+      .fac-grid { grid-template-columns: repeat(2,1fr); gap: 14px; }
+
+      /* Disclosure */
+      .disc-items { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .disc-card { padding: 36px 20px; }
+      .disc-card h3 { font-size: 1.6rem; }
+
+      /* Contact */
+      .contact-cards { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .contact-main { grid-template-columns: 1fr; gap: 28px; }
       .cf-row { grid-template-columns: 1fr; }
-      .disc-items { grid-template-columns: 1fr 1fr; }
-      .disc-card { padding: 36px 24px; }
-      /* Kid Zone responsive */
-      .kz-grid { grid-template-columns: 1fr; }
-      .kz-features-strip { grid-template-columns: repeat(2, 1fr); }
-      .kzp-features { grid-template-columns: 1fr; }
+      .map-wrap { height: 280px; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      /* Kid Zone */
+      .kz-grid { grid-template-columns: 1fr; gap: 32px; }
+      .kz-features-strip { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .kzp-features { grid-template-columns: 1fr 1fr; }
       .kzp-btns { flex-direction: column; }
+
+      /* Section headings */
+      .section-heading { font-size: clamp(1.7rem, 5vw, 2.4rem); }
+      .section-sub { font-size: 0.95rem; }
+      .section-header { margin-bottom: 36px; }
     }
+
+    /* ===== MOBILE (480px) ===== */
     @media (max-width: 480px) {
-      .hl-grid, .notices-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .contact-cards { grid-template-columns: 1fr; }
-      .hero-sun-bg { opacity: .25; }
-      .disc-items { grid-template-columns: 1fr; }
-      .kz-features-strip { grid-template-columns: 1fr 1fr; }
-      .kz-photos-grid { grid-template-columns: 1fr; }
-      .kz-photo-slot.big { grid-column: span 1; }
+      .section-pad { padding: 44px 0; }
+      .container { padding: 0 14px; }
+
+      /* Navbar */
+      #navbar { padding: 10px 0; }
+      .nav-sun { width: 40px; height: 40px; }
+      .sun-core { width: 24px; height: 24px; }
+      .nav-brand-name { font-size: 18px; }
+      .nav-brand-sub { font-size: 9.5px; }
+
+      /* Hero */
+      .hero-content { padding: 80px 14px 40px; }
+      .hero-h1 { font-size: clamp(1.9rem, 9vw, 2.6rem); line-height: 1.1; }
+      .hero-badge { font-size: 11px; padding: 5px 14px; }
+      .hero-sub { font-size: 0.9rem; margin-bottom: 22px; }
+      .hero-loc { font-size: 11.5px; margin-bottom: 24px; }
+      .hero-btns { flex-direction: column; gap: 10px; }
+      .btn-sun, .btn-outline { width: 100%; text-align: center; padding: 13px 20px; font-size: 14px; border-radius: 14px; }
+      .hero-sun-bg { opacity: .15; width: 260px; height: 260px; }
+
+      /* Stats — handled above */
+
+      /* About */
+      .about-visual { min-height: auto; padding: 24px 18px; border-radius: 20px; }
+      .about-visual h3 { font-size: 1.35rem; }
+      .about-visual p { font-size: 13px; }
+      .logo-placeholder { width: 80px; height: 80px; }
+      .float-badge { right: 14px; padding: 10px 14px; }
+      .float-badge strong { font-size: 1.4rem; }
+      .about-right h3 { font-size: 1.6rem; }
+      .about-right p { font-size: 14px; }
+      .about-kpis { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .kpi { padding: 12px 14px; }
+      .kpi strong { font-size: 1.4rem; }
+      .hl-grid { grid-template-columns: 1fr; gap: 12px; }
+      .hl-card { padding: 20px 16px; }
+
+      /* Admissions */
+      .adm-grid { gap: 24px; }
+      .step { gap: 10px; }
+      .step-num { width: 36px; height: 36px; font-size: 15px; border-radius: 10px; }
+      .step-body h4 { font-size: 14px; }
+      .step-body p { font-size: 12px; }
+      .docs-box { padding: 16px; border-radius: 14px; }
+      .form-box-header { padding: 18px 16px 14px; }
+      .form-box-header h3 { font-size: 1.5rem; }
+      .form-box-body { padding: 16px 16px 20px; }
+      .fld input, .fld select, .fld textarea { font-size: 16px; /* prevent iOS zoom */ padding: 11px 14px; }
+      .enq-submit-btn { font-size: 14px; padding: 14px; }
+
+      /* Gallery */
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .gallery-tabs { gap: 5px; }
+      .gtab { font-size: 11.5px; padding: 5px 11px; border-radius: 99px; }
+
+      /* Notices */
+      .notices-grid { grid-template-columns: 1fr; gap: 10px; }
+      .notice-card { padding: 16px; }
+      .notice-filters { gap: 7px; }
+      .nf-btn { font-size: 11px; padding: 6px 14px; }
+
+      /* Facilities */
+      .fac-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .fac-card { padding: 18px 14px; }
+      .fac-icon { width: 48px; height: 48px; font-size: 20px; margin-bottom: 10px; }
+      .fac-card h4 { font-size: 0.95rem; }
+      .fac-card p { font-size: 12px; }
+
+      /* Disclosure */
+      .disc-card { padding: 28px 16px; border-radius: 20px; }
+      .disc-icon { font-size: 40px; }
+      .disc-card h3 { font-size: 1.4rem; }
+      .disc-card p { font-size: 13px; }
+      .disc-items { grid-template-columns: 1fr; gap: 8px; margin-bottom: 28px; }
+      .disc-drive-btn { padding: 12px 24px; font-size: 14px; }
+
+      /* Contact */
+      .contact-cards { grid-template-columns: 1fr; gap: 10px; }
+      .cc { padding: 16px 14px; }
+      .map-wrap { height: 240px; border-radius: 16px; }
+      .cf-box { padding: 20px 16px; border-radius: 16px; }
+      .cf-input { font-size: 16px; /* prevent iOS zoom */ }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; padding-bottom: 32px; }
+      footer { padding: 44px 0 0; }
+      .footer-bottom { padding: 14px 0; gap: 6px; }
+
+      /* Kid Zone */
+      .kz-features-strip { grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 36px; }
+      .kz-feat-card { padding: 16px 12px; border-radius: 14px; }
+      .kz-feat-icon { font-size: 1.6rem; }
+      .kz-feat-card h4 { font-size: 0.9rem; }
+      .kz-feat-card p { font-size: 11px; }
+      .kz-btn-primary, .kz-btn-ghost { width: 100%; padding: 13px 20px; font-size: 14px; }
+      .kz-cta-row { flex-direction: column; gap: 10px; }
+      .kz-section-head h2 { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+
+      /* Floating KZ button — smaller on mobile */
+      #kzFloat { bottom: 16px; right: 14px; padding: 10px 16px 10px 12px; font-size: 12.5px; gap: 7px; }
+      .kzf-icon { font-size: 1.2rem; }
+      .kzf-new { font-size: 8px; padding: 2px 6px; }
+
+      /* Section header */
+      .section-heading { font-size: clamp(1.55rem, 6.5vw, 2rem); }
+      .section-sub { font-size: 0.9rem; }
+      .section-header { margin-bottom: 28px; }
+      .badge { font-size: 10px; padding: 4px 12px; margin-bottom: 12px; }
+    }
+
+    /* ===== VERY SMALL PHONES (360px) ===== */
+    @media (max-width: 360px) {
+      .container { padding: 0 12px; }
+      .nav-brand-name { font-size: 16px; }
+      .hero-h1 { font-size: 1.75rem; }
+      .hero-btns { gap: 8px; }
+      .hero-stats-inner { padding: 12px 10px; }
+      .stat-num { font-size: 1.3rem; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .fac-grid { grid-template-columns: 1fr; }
+      .about-kpis { grid-template-columns: 1fr; }
+      .kz-features-strip { grid-template-columns: 1fr; }
+      .footer-grid { gap: 20px; }
     }
 
     /* ===== FLOATING KID ZONE BUTTON ===== */
@@ -920,6 +1132,236 @@
         #fd5949 45%, #d6249f 60%, #285AEB 90%);
       color: white;
     }
+
+    /* ===== HERO SLIDESHOW + NAVBAR + STATS — MOBILE ===== */
+    @media (max-width: 600px) {
+      /* --- Navbar: force hide everything except logo + hamburger --- */
+      .nav-links, .nav-cta, .nav-socials, .nav-sep,
+      .nav-social-btn, .nav-social-btn * { display: none !important; }
+      #navbar .nav-inner { justify-content: space-between; gap: 0; overflow: hidden; }
+      .nav-brand { max-width: calc(100vw - 60px); }
+      .nav-brand-name { font-size: 17px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+      /* --- Hero: ensure it fills the screen --- */
+      #home { min-height: 100svh; }
+      #slidePrev, #slideNext { width: 36px !important; height: 36px !important; font-size: 16px !important; }
+      #slideDots { bottom: 90px !important; gap: 7px !important; }
+      .hslide > div:last-child {
+        bottom: 20px !important; gap: 8px !important;
+        padding: 0 14px; width: 100%; box-sizing: border-box;
+        flex-direction: column; align-items: center;
+      }
+      .hslide > div:last-child .btn-sun,
+      .hslide > div:last-child .btn-outline {
+        padding: 11px 0 !important; font-size: 13px !important;
+        width: 100%; max-width: 260px; text-align: center;
+      }
+
+      /* --- Stats bar: 2×2 grid, centered, no overflow --- */
+      .hero-stats-inner {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0 !important; padding: 0 !important;
+      }
+      .stat-item {
+        text-align: center !important;
+        padding: 16px 8px !important;
+        border-right: 1px solid rgba(255,255,255,.12);
+        border-bottom: 1px solid rgba(255,255,255,.12);
+      }
+      .stat-item:nth-child(2n) { border-right: none !important; }
+      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none !important; }
+      .stat-num { font-size: 1.6rem !important; }
+      .stat-lbl { font-size: 10.5px !important; }
+    }
+    @media (min-width: 601px) and (max-width: 1024px) {
+      #slideDots { bottom: 130px !important; }
+      .hslide > div:last-child { bottom: 80px !important; }
+    }
+
+    /* ===== MOBILE & TABLET ENHANCEMENTS ===== */
+
+    /* Prevent horizontal overflow on all screens */
+    html, body { overflow-x: hidden; }
+
+    /* ===== iPAD (768px – 1024px) ===== */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .container { padding: 0 28px; }
+      .section-pad { padding: 70px 0; }
+      .about-grid { gap: 36px; }
+      .about-visual { min-height: 360px; }
+      .adm-grid { gap: 32px; }
+      .form-box-header { padding: 24px 26px 20px; }
+      .form-box-body { padding: 20px 26px 24px; }
+      .kz-grid { gap: 36px; }
+      .kz-features-strip { gap: 12px; }
+      .contact-main { gap: 32px; }
+      .map-wrap { height: 320px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .gallery-grid { grid-template-columns: repeat(3,1fr); }
+      .fac-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
+    /* Floating Kid Zone button — shrink on small screens */
+    @media (max-width: 480px) {
+      #kzFloat { bottom: 16px; right: 12px; padding: 10px 14px 10px 12px; font-size: 12px; }
+      .kzf-icon { font-size: 1.2rem; }
+      .kzf-text small { font-size: 9px; }
+    }
+
+    /* WhatsApp button — avoid overlapping kzFloat on phones */
+    @media (max-width: 480px) {
+      a[href^="https://wa.me"] {
+        bottom: 80px !important; right: 12px !important;
+        width: 44px !important; height: 44px !important;
+      }
+    }
+
+    /* ===== HERO — mobile ===== */
+    @media (max-width: 600px) {
+      .hero-content { padding: 90px 16px 40px; align-items: flex-start; }
+      .hero-h1 { font-size: clamp(2rem, 9vw, 3rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-btns { flex-direction: column; gap: 10px; }
+      .btn-sun, .btn-outline { width: 100%; text-align: center; padding: 13px 20px; }
+      .hero-stats-inner { grid-template-columns: repeat(2,1fr); gap: 8px; padding: 18px 16px; }
+      .stat-num { font-size: 1.6rem; }
+      .stat-lbl { font-size: 10.5px; }
+    }
+
+    /* ===== TICKER — mobile ===== */
+    @media (max-width: 480px) {
+      .ticker-wrap { margin-top: 60px; }
+      .ticker-label { font-size: 9px; padding: 4px 10px; }
+      .ticker-items span { font-size: 12px; }
+    }
+
+    /* ===== ABOUT — mobile ===== */
+    @media (max-width: 768px) {
+      .about-grid { gap: 32px; }
+      .about-visual { min-height: 300px; padding: 28px 22px; }
+      .about-visual h3 { font-size: 1.4rem; }
+      .about-kpis { grid-template-columns: 1fr 1fr; gap: 10px; }
+    }
+    @media (max-width: 480px) {
+      .about-right h3 { font-size: 1.6rem; }
+      .float-badge { right: 12px; bottom: -10px; padding: 8px 14px; }
+      .float-badge strong { font-size: 1.3rem; }
+    }
+
+    /* ===== ADMISSIONS / FORM — mobile ===== */
+    @media (max-width: 768px) {
+      .adm-grid { gap: 32px; }
+      .form-box-header { padding: 22px 20px 18px; }
+      .form-box-body { padding: 18px 20px 22px; }
+      .form-box-header h3 { font-size: 1.5rem; }
+      .fld-row { grid-template-columns: 1fr; gap: 0; }
+      .seat-wrap { margin-top: 32px; }
+    }
+    @media (max-width: 480px) {
+      .form-box-header { padding: 18px 16px 14px; }
+      .form-box-body { padding: 14px 16px 18px; }
+      .form-box-header h3 { font-size: 1.3rem; }
+      /* font-size 16px prevents iOS auto-zoom on input focus */
+      .fld input, .fld select, .fld textarea { font-size: 16px; }
+      .enq-submit-btn { font-size: 14px; padding: 14px; }
+      .form-trust { gap: 10px; }
+    }
+
+    /* ===== KID ZONE SECTION — mobile ===== */
+    @media (max-width: 768px) {
+      .kz-grid { gap: 32px; }
+      .kz-section-head h2 { font-size: clamp(1.8rem, 6vw, 2.6rem); }
+      .kz-features-strip { gap: 10px; }
+      .kz-feat-card { padding: 18px 12px; }
+    }
+    @media (max-width: 480px) {
+      .kz-cta-row { flex-direction: column; }
+      .kz-btn-primary, .kz-btn-ghost { width: 100%; text-align: center; padding: 13px 20px; }
+      .kz-classes-row { gap: 7px; }
+      .kz-class-pill { padding: 6px 14px; font-size: 13px; }
+      .kz-features-strip { grid-template-columns: 1fr 1fr; gap: 8px; }
+    }
+
+    /* ===== GALLERY — mobile ===== */
+    @media (max-width: 768px) {
+      .gallery-tabs { gap: 7px; }
+      .gtab { padding: 7px 14px; font-size: 12px; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .gtab { padding: 6px 12px; font-size: 11.5px; }
+    }
+
+    /* ===== NOTICES — mobile ===== */
+    @media (max-width: 480px) {
+      .notice-filters { gap: 7px; }
+      .nf-btn { padding: 6px 13px; font-size: 11px; }
+      .notice-card { padding: 16px; }
+    }
+
+    /* ===== FACILITIES — mobile ===== */
+    @media (max-width: 480px) {
+      .fac-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .fac-card { padding: 18px 14px; }
+      .fac-icon { width: 48px; height: 48px; font-size: 20px; }
+    }
+
+    /* ===== DISCLOSURE — mobile ===== */
+    @media (max-width: 480px) {
+      .disc-card { padding: 28px 16px; border-radius: 18px; }
+      .disc-card h3 { font-size: 1.5rem; }
+      .disc-drive-btn { padding: 12px 22px; font-size: 14px; }
+      .disc-items { gap: 10px; }
+    }
+
+    /* ===== CONTACT — mobile ===== */
+    @media (max-width: 768px) {
+      .map-wrap { height: 280px; }
+      .contact-main { gap: 28px; }
+    }
+    @media (max-width: 480px) {
+      .contact-cards { gap: 10px; }
+      .cc { padding: 16px 14px; }
+      .cf-box { padding: 22px 18px; }
+      .cf-input { font-size: 16px; }
+      .cf-row { gap: 0; }
+    }
+
+    /* ===== FOOTER — mobile ===== */
+    @media (max-width: 768px) {
+      footer { padding: 40px 0 0; }
+      .footer-grid { gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
+    }
+    @media (max-width: 480px) { .footer-grid { gap: 22px; } }
+
+    /* ===== SECTION PADDING — mobile ===== */
+    @media (max-width: 480px) {
+      .section-pad { padding: 48px 0; }
+      .container { padding: 0 16px; }
+      .section-heading { font-size: clamp(1.7rem, 7vw, 2.2rem); }
+      .section-header { margin-bottom: 36px; }
+    }
+
+    /* ===== NAVBAR — mobile ===== */
+    @media (max-width: 480px) {
+      .nav-brand-name { font-size: 17px; }
+      .nav-brand-sub { font-size: 9px; }
+      .nav-sun { width: 40px; height: 40px; }
+      .sun-core { width: 22px; height: 22px; }
+      .mobile-menu button { padding: 12px 20px; font-size: 13.5px; }
+    }
+
+    /* Seat table — scroll on mobile */
+    @media (max-width: 600px) {
+      .seat-table th, .seat-table td { padding: 10px 14px; font-size: 12px; }
+    }
+
+    /* Remove hover transforms on touch devices */
+    @media (hover: none) {
+      .card:hover { transform: none; box-shadow: none; }
+      .btn-sun:hover, .btn-outline:hover, .nav-cta:hover { transform: none; }
+    }
   
   </style>
 </head>
@@ -928,7 +1370,7 @@
 <!-- ===================== KID ZONE ANNOUNCEMENT POPUP ===================== -->
 <div id="kzPopup">
   <div class="kzp-box">
-    <button class="kzp-close-x" onclick="closeKzPopup()">✕</button>
+    <button class="kzp-close-x" onclick="closeKzPopup()" aria-label="Close">✕</button>
     <div class="kzp-top">
       <div class="kzp-new-tag">🎉 Newly Launched!</div>
       <span class="kzp-emoji">🎪</span>
@@ -955,9 +1397,7 @@
       </div>
     </div>
   </div>
-</div>
-
-<a href="https://wa.me/918279856292" target="_blank" style="
+</div><a href="https://wa.me/918279856292" target="_blank" style="
   position:fixed; bottom:100px; right:20px; z-index:999;
   width:52px; height:52px; border-radius:50%;
   background:#25d366; display:flex; align-items:center; justify-content:center;
@@ -1102,7 +1542,7 @@
 </div>
 
 <!-- ===================== HERO SLIDESHOW ===================== -->
-<section id="home" style="position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;">
+<section id="home" style="position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background:#111;">
 
   <!-- ── Slides ── -->
   <div id="heroSlider" style="position:absolute;inset:0;z-index:0;">
@@ -1197,11 +1637,10 @@
   <!-- Stats bar -->
   <div class="hero-stats" style="position:relative;z-index:5;">
     <div class="hero-stats-inner">
-      <div><div class="stat-num">500+</div><div class="stat-lbl">Students Enrolled</div></div>
-      <div><div class="stat-num">30+</div><div class="stat-lbl">Qualified Teachers</div></div>
-      <div><div class="stat-num">15+</div><div class="stat-lbl">Years of Excellence</div></div>
-      <!-- <div><div class="stat-num">5+</div><div class="stat-lbl">Labs</div></div> -->
-      <div><div class="stat-num">24/7</div><div class="stat-lbl">CCTV Surveillance</div></div>
+      <div class="stat-item"><div class="stat-num">500+</div><div class="stat-lbl">Students Enrolled</div></div>
+      <div class="stat-item"><div class="stat-num">30+</div><div class="stat-lbl">Qualified Teachers</div></div>
+      <div class="stat-item"><div class="stat-num">15+</div><div class="stat-lbl">Years of Excellence</div></div>
+      <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-lbl">CCTV Surveillance</div></div>
       
     </div>
   </div>
@@ -1971,7 +2410,7 @@
    <div class="contact-cards reveal">
       <div class="card cc"><div class="cc-icon">📍</div><h4>Our Address</h4><p>Fazalpur Tabela, Bijnor NH-74, Kotwali Rd, Najibabad, Uttar Pradesh 246763</p></div>
       <div class="card cc"><div class="cc-icon">📞</div><h4>Phone</h4><p>+91-8279856292 (Office)<br>+91-XXXXX-XXXXX (Principal)</p><a href="tel:+918279856292">Call Now →</a></div>
-      <div class="card cc"><div class="cc-icon">✉️</div><h4>Email</h4><p><a href="mailto:sunshinepublicschoolnbd@gmail.com" style="color:inherit;">sunshinepublicschoolnbd@gmail.com</a><br><a href="mailto:vinodmittalssps@gmail.com" style="color:inherit;">vinodmittalssps@gmail.com</a></p><a href="mailto:sunshinepublicschoolnbd@gmail.com">Email Us →</a></div>
+      <div class="card cc"><div class="cc-icon">✉️</div><h4>Email</h4><p><a href="/cdn-cgi/l/email-protection#9be8eef5e8f3f2f5feebeef9f7f2f8e8f8f3f4f4f7f5f9ffdbfcf6faf2f7b5f8f4f6" style="color:inherit;"><span class="__cf_email__" data-cfemail="3a494f54495253545f4a4f5856535949595255555654585e7a5d575b535614595557">[email&#160;protected]</span></a><br><a href="/cdn-cgi/l/email-protection#8ef8e7e0e1eae3e7fafaefe2fdfdfefdcee9e3efe7e2a0ede1e3" style="color:inherit;"><span class="__cf_email__" data-cfemail="bccad5d2d3d8d1d5c8c8ddd0cfcfcccffcdbd1ddd5d092dfd3d1">[email&#160;protected]</span></a></p><a href="/cdn-cgi/l/email-protection#6013150e1308090e051015020c09031303080f0f0c0e020420070d01090c4e030f0d">Email Us →</a></div>
       <div class="card cc"><div class="cc-icon">🕐</div><h4>School Hours</h4><p>Monday – Saturday<br>8:00 AM – 4:00 PM<br>Sunday: Closed</p></div>
     </div>
 
@@ -2209,7 +2648,7 @@
         <h5>Contact Info</h5>
         <div class="fi"><span class="ico">📍</span><p>Fazalpur Tabela, Bijnor NH-74, Kotwali Rd, Najibabad, UP 246763</p></div>
         <div class="fi"><span class="ico">📞</span><p><a href="tel:+918279856292">+91-8279856292</a></p></div>
-        <div class="fi"><span class="ico">✉️</span><p><a href="mailto:sunshinepublicschoolnbd@gmail.com" style="color:inherit;">sunshinepublicschoolnbd@gmail.com</a></p></div>
+        <div class="fi"><span class="ico">✉️</span><p><a href="/cdn-cgi/l/email-protection#d2a1a7bca1babbbcb7a2a7b0bebbb1a1b1babdbdbebcb0b692b5bfb3bbbefcb1bdbf" style="color:inherit;"><span class="__cf_email__" data-cfemail="2350564d504b4a4d465356414f4a4050404b4c4c4f4d414763444e424a4f0d404c4e">[email&#160;protected]</span></a></p></div>
         <div class="fi"><span class="ico">🕐</span><p>Mon–Sat: 8:00 AM – 4:00 PM</p></div>
         <div class="fi"><span class="ico">🌐</span><p><a href="https://www.sunshinepublicschoolnbd.com" target="_blank">sunshinepublicschoolnbd.com</a></p></div>
         <!-- Footer social links -->
@@ -2243,7 +2682,7 @@
 </footer>
 
 <!-- ===================== JAVASCRIPT ===================== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ------ SUN RAYS ------ */
 (function(){
   const rays = document.getElementById('sunRays');
@@ -2500,14 +2939,24 @@ renderNotices('All');
 /* ------ KID ZONE POPUP ------ */
 function closeKzPopup(){
   const p = document.getElementById('kzPopup');
-  p.style.opacity = '0';
   p.style.transition = 'opacity .3s';
-  setTimeout(() => p.style.display = 'none', 300);
+  p.style.opacity = '0';
+  function hide(){ p.style.display='none'; p.style.opacity=''; p.style.transition=''; }
+  const timer = setTimeout(hide, 350);
+  p.addEventListener('transitionend', function handler(){
+    clearTimeout(timer); hide();
+    p.removeEventListener('transitionend', handler);
+  });
 }
-// Close popup when clicking backdrop
-document.getElementById('kzPopup').addEventListener('click', function(e){
-  if(e.target === this) closeKzPopup();
-});
+(function(){
+  const popup = document.getElementById('kzPopup');
+  // Desktop click on backdrop
+  popup.addEventListener('click', function(e){ if(e.target === popup) closeKzPopup(); });
+  // Touch tap on backdrop (iOS / iPadOS)
+  popup.addEventListener('touchend', function(e){
+    if(e.target === popup){ e.preventDefault(); closeKzPopup(); }
+  }, { passive: false });
+})();
 
 /* ------ KID ZONE PHOTOS & VIDEO SETUP ------ */
 (function(){
@@ -2672,17 +3121,3 @@ function sendEnquiry(e){
 -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-/* ════════════════════════════════════════════════════════
-   ★  SCHOOL MANAGER — FILL IN THESE 3 VALUES  ★
-   See the SETUP GUIDE section below this website for steps.
-   ════════════════════════════════════════════════════════ */
-
-const EMAILJS_PUBLIC_KEY       = '7jpo5_M8uLxmU-aXi';      // e.g. 'abc123XYZ'
-const EMAILJS_SERVICE_ID       = 'service_l3ldwvn';      // e.g. 'service_xxxxxx'
-const EMAILJS_CONTACT_TEMPLATE = 'template_vrgagvl';// e.g. 'template_contact'
-const EMAILJS_ENQUIRY_TEMPLATE = 'template_636wav8';// e.g. 'template_enquiry'
-
-emailjs.init(EMAILJS_PUBLIC_KEY);
-</script>
-</body>
-</html>
