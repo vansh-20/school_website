@@ -2181,8 +2181,8 @@
       <button class="gtab" onclick="filterGallery('Staff',this)">Faculty</button>
       <button class="gtab" onclick="filterGallery('Sports',this)">Sports</button>
       <button class="gtab" onclick="filterGallery('Events',this)">Events</button>
-      <!-- <button class="gtab" onclick="filterGallery('Labs',this)">Labs</button> -->
-      <button class="gtab" onclick="filterGallery('Cultural',this)">Cultural</button>
+      <button class="gtab" onclick="filterGallery('Labs',this)">Labs</button>
+      <!-- <button class="gtab" onclick="filterGallery('Cultural',this)">Cultural</button> -->
     </div>
 
     <div class="gallery-grid reveal" id="galleryGrid"></div>
@@ -2784,7 +2784,7 @@ reveals.forEach(el => {
 //  Leave as '' to show the placeholder box.
 // ─────────────────────────────────────────────────
 const KZ_PHOTOS = [
-  'School Photo/IMG_5813.JPG.jpeg',   // KZ Photo 1 — top left
+  'School Photo/IMG_5843.JPG.jpeg',   // KZ Photo 1 — top left
   'School Photo/IMG_5815.JPG.jpeg',   // KZ Photo 2 — top right
   'School Photo/IMG_5684.JPG.jpeg',   // KZ Photo 3 — wide bottom (classroom / play area view)
 ];
@@ -2814,30 +2814,64 @@ const gallerySlots = [
   {src:'School Photo/IMG_5798.png', cat:'Campus',    label:'School Main Building',  emoji:'🏫', cols:2},
   {src:'School Photo/building.png', cat:'Campus',    label:'School Main Building',  emoji:'🏫', cols:2},
 
-  {src:'School Photo/IMG-20260323-WA0036.jpg.jpeg', cat:'Cultural',  label:'Paying Respect to Goddess Saraswati',     emoji:'🇮🇳', cols:2},
+  {src:'School Photo/IMG-20260323-WA0036.jpg.jpeg', cat:'Events',  label:'Paying Respect to Goddess Saraswati',     emoji:'🇮🇳', cols:2},
+  {src:'School Photo/IMG-20260323-WA0082.jpg.jpeg', cat:'Events',    label:'Guest of Honour',  emoji:'🎭', cols:2},
+  {src:'School Photo/DSC_7910.JPG', cat:'Events',    label:'Guest of Honour',  emoji:'🎭', cols:2},
 
   {src:'School Photo/IMG_5684.JPG.jpeg', cat:'Kidzone',      label:'Room',          emoji:'🖥️', cols:2},
   {src:'School Photo/IMG_5808.JPG.jpeg', cat:'Kidzone',      label:'Room',          emoji:'🖥️', cols:2},
   {src:'School Photo/IMG_5813.JPG.jpeg', cat:'Kidzone',      label:'Room',          emoji:'🖥️', cols:2},
   {src:'School Photo/IMG_5815.JPG.jpeg', cat:'Kidzone',      label:'Room',          emoji:'🖥️', cols:2},
+  {src:'School Photo/IMG_5844.JPG.jpeg', cat:'Kidzone',      label:'Room',          emoji:'🖥️', cols:2},
+  {src:'School Photo/IMG_5843.JPG.jpeg', cat:'Kidzone',      label:'Room',          emoji:'🖥️', cols:2},
+
+  {src:'School Photo/IMG_5852.JPG.jpeg', cat:'Labs',    label:'Biology Lab',    emoji:'🧪', cols:2},
+  {src:'School Photo/IMG_5851.JPG.jpeg', cat:'Labs',    label:'Biology Lab',    emoji:'🔬', cols:2},
+  {src:'School Photo/IMG_5850.JPG.jpeg', cat:'Labs',    label:'Physics Lab',    emoji:'🔬', cols:2},
+  {src:'School Photo/IMG_5848.JPG.jpeg', cat:'Labs',    label:'Physics Lab',    emoji:'🔬', cols:2},
+  {src:'School Photo/IMG_5854.JPG.jpeg', cat:'Labs',    label:'Chemistry Lab',    emoji:'🧪', cols:2},
+  {src:'School Photo/IMG_5857.JPG.jpeg', cat:'Labs',    label:'Computer Lab',    emoji:'🧪', cols:2},
 
   
  {src:'School Photo/IMG_5830.JPG.jpeg', cat:'Campus',    label:'Gallery',         emoji:'🌿', cols:2}, 
  {src:'School Photo/IMG_5834.JPG.jpeg', cat:'Campus',    label:'Gallery',        emoji:'📚', cols:2},
 
   {src:'School Photo/IMG-20260323-WA0033.jpg.jpeg', cat:'Events',    label:'Dance Performance',  emoji:'🎭', cols:2},
-  {src:'School Photo/IMG-20260323-WA0082.jpg.jpeg', cat:'Events',    label:'Guest of Honour',  emoji:'🎭', cols:2},
-  {src:'School Photo/IMG-20260323-WA0013.jpg.jpeg', cat:'Cultural',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/IMG-20260323-WA0013.jpg.jpeg', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+
+
+  {src:'School Photo/DSC_7926.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_8053.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_8054.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_7952.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_7994.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_8082.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_7916.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_7914.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_8084.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_8093.JPG', cat:'Events',  label:'Dance Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_8115.JPG', cat:'Events',  label:'Bhangra Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_8096.JPG', cat:'Events',  label:'Bhangra Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_7960.JPG', cat:'Events',  label:'Taekwondo Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_7965.JPG', cat:'Events',  label:'Taekwondo Performance',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_8145.JPG', cat:'Events',  label:'Cricket Tournament Prize Distribution',     emoji:'💃', cols:2},
+  {src:'School Photo/DSC_8147.JPG', cat:'Events',  label:'Cricket Tournament Prize Distribution',     emoji:'💃', cols:2},
+  
+
+
 
   {src:'School Photo/IMG_5704.JPG.jpeg', cat:'Staff', label:'Faculty Members',      emoji:'💻', cols:2},
 
-  {src:'School Photo/IMG_5835.JPG.jpeg', cat:'Sports',    label:'Swings&Stage',       emoji:'🏆', cols:2},
-  {src:'School Photo/IMG_5837.JPG.jpeg', cat:'Sports',    label:'Cricket Ground',        emoji:'🏏', cols:2},
+  
+
+
+  {src:'School Photo/IMG_5835.JPG.jpeg', cat:'Sports',    label:'School Ground',       emoji:'🏆', cols:2},
+  {src:'School Photo/IMG_5837.JPG.jpeg', cat:'Sports',    label:'School Ground',        emoji:'🏏', cols:2},
+ 
 
   
 
-  //{src:'', cat:'Labs',      label:'Science Lab',    emoji:'🔬', cols:2},
-  //{src:'', cat:'Labs',    label:'Science Lab',    emoji:'🧪', cols:2},
+  
 
 ];
 
@@ -2848,7 +2882,6 @@ const palettes = {
   Sports:    ['#064e3b','#059669'],
   Kidzone: ['#312e81','#6d28d9'],
   Labs:      ['#0c4a6e','#0284c7'],
-  Cultural:  ['#9d174d','#db2777'],
   Staff:   ['#312e81','#6d28d9'],
 };
 
