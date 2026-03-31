@@ -414,6 +414,29 @@
     .kz-photo-placeholder .ph-icon { font-size: 2rem; display: block; margin-bottom: 6px; }
     .kz-photo-placeholder p { font-size: 11px; color: rgba(255,255,255,.5); line-height: 1.4; }
     .kz-photo-slot:hover { border-color: rgba(253,230,138,.6); background: rgba(253,230,138,.08); }
+    /* Open photo overlay (shown on hover when image is loaded) */
+    .kz-photo-slot.has-img { cursor: pointer; }
+    .kz-photo-slot.has-img .kz-photo-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0);
+      transition: background .3s; display: flex; align-items: flex-end;
+      border-radius: 14px;
+    }
+    .kz-photo-slot.has-img:hover .kz-photo-overlay { background: rgba(0,0,0,.38); }
+    .kz-photo-overlay-cap {
+      padding: 10px 12px; font-size: 12px; font-weight: 600; color: #fff;
+      transform: translateY(100%); transition: transform .3s;
+    }
+    .kz-photo-slot.has-img:hover .kz-photo-overlay-cap { transform: translateY(0); }
+    .kz-photo-expand {
+      position: absolute; top: 10px; right: 10px;
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(.8); transition: opacity .25s, transform .25s;
+      backdrop-filter: blur(4px); pointer-events: none;
+    }
+    .kz-photo-slot.has-img:hover .kz-photo-expand { opacity: 1; transform: scale(1); }
+    .kz-photo-expand svg { width: 15px; height: 15px; stroke: #fff; fill: none; }
     /* Big photo slot */
     .kz-photo-slot.big { grid-column: span 2; aspect-ratio: 16/7; }
 
@@ -840,9 +863,69 @@
     /* when filled = photo */
     .g-slot .photo-fill { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; }
     .g-slot .photo-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); transition: background .3s; display: flex; align-items: flex-end; }
-    .g-slot:hover .photo-overlay { background: rgba(0,0,0,.3); }
-    .g-slot .photo-cap { padding: 10px; font-size: 12px; font-weight: 600; color: #fff; transform: translateY(100%); transition: transform .3s; }
+    .g-slot:hover .photo-overlay { background: rgba(0,0,0,.38); }
+    .g-slot .photo-cap { padding: 10px 12px; font-size: 12px; font-weight: 600; color: #fff; transform: translateY(100%); transition: transform .3s; }
     .g-slot:hover .photo-cap { transform: translateY(0); }
+    /* Decent expand icon on hover — no lens */
+    .g-slot .photo-expand {
+      position: absolute; top: 10px; right: 10px;
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(.8); transition: opacity .25s, transform .25s;
+      backdrop-filter: blur(4px);
+    }
+    .g-slot:hover .photo-expand { opacity: 1; transform: scale(1); }
+    .g-slot .photo-expand svg { width: 15px; height: 15px; stroke: #fff; fill: none; }
+
+    /* ===== LIGHTBOX ===== */
+    #galleryLightbox {
+      display: none; position: fixed; inset: 0; z-index: 9990;
+      background: rgba(10,10,10,.92); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center;
+      animation: lbFadeIn .25s ease;
+    }
+    #galleryLightbox.open { display: flex; }
+    @keyframes lbFadeIn { from{opacity:0} to{opacity:1} }
+    .lb-inner {
+      position: relative; max-width: min(90vw, 960px); max-height: 90vh;
+      display: flex; flex-direction: column; align-items: center;
+      animation: lbSlideUp .28s cubic-bezier(.34,1.4,.64,1);
+    }
+    @keyframes lbSlideUp { from{transform:translateY(30px);opacity:0} to{transform:none;opacity:1} }
+    #lbImg {
+      max-width: 100%; max-height: calc(90vh - 60px);
+      border-radius: 16px; object-fit: contain;
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+      display: block;
+    }
+    .lb-caption {
+      margin-top: 14px; font-size: 13.5px; font-weight: 500;
+      color: rgba(255,255,255,.75); letter-spacing: .03em; text-align: center;
+    }
+    .lb-close {
+      position: fixed; top: 18px; right: 20px;
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      color: #fff; font-size: 20px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background .2s; z-index: 9991;
+    }
+    .lb-close:hover { background: rgba(255,255,255,.22); }
+    .lb-nav {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      color: #fff; font-size: 20px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background .2s; z-index: 9991; user-select: none;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,.22); }
+    #lbPrev { left: 16px; }
+    #lbNext { right: 16px; }
+    @media (max-width: 600px) {
+      .lb-nav { width: 36px; height: 36px; font-size: 16px; }
+      #lbPrev { left: 8px; } #lbNext { right: 8px; }
+      .lb-close { top: 12px; right: 12px; }
+    }
     .gallery-upload-note { text-align: center; margin-top: 24px; padding: 16px; background: var(--warm-100); border-radius: 14px; border: 1px solid var(--warm-200); }
     .gallery-upload-note p { font-size: 13px; color: var(--sun-dark); }
     .gallery-upload-note strong { font-weight: 700; }
@@ -1836,6 +1919,8 @@
               <span class="ph-icon">📷</span>
               <p><strong>Add Photo 1</strong><br>Kid Zone Activity</p>
             </div>
+            <div class="kz-photo-overlay"><span class="kz-photo-overlay-cap">Open Photo</span></div>
+            <div class="kz-photo-expand"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
           </div>
           <!-- Photo 2 – top right -->
           <div class="kz-photo-slot" id="kzPhoto2">
@@ -1844,6 +1929,8 @@
               <span class="ph-icon">📷</span>
               <p><strong>Add Photo 2</strong><br>Play Area</p>
             </div>
+            <div class="kz-photo-overlay"><span class="kz-photo-overlay-cap">Open Photo</span></div>
+            <div class="kz-photo-expand"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
           </div>
           <!-- Photo 3 – bottom wide -->
           <div class="kz-photo-slot big" id="kzPhoto3">
@@ -1852,6 +1939,8 @@
               <span class="ph-icon">📸</span>
               <p><strong>Add Wide Photo</strong><br>Kid Zone Classroom or Play Area View</p>
             </div>
+            <div class="kz-photo-overlay"><span class="kz-photo-overlay-cap">Open Photo</span></div>
+            <div class="kz-photo-expand"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
           </div>
         </div>
 
@@ -2470,10 +2559,10 @@
     <div class="cc-icon">✉️</div>
       <h4>Email</h4>
       <p>
-        <a href="mailto:sunshinepublicschoolnbd@gmail.com" style="color:inherit;">sunshinepublicschoolnbd@gmail.com</a><br>
-        <a href="mailto:vinodmittalssps@gmail.com" style="color:inherit;">vinodmittalssps@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#5221273c213a3b3c372227303e3b3121313a3d3d3e3c303612353f333b3e7c313d3f" style="color:inherit;"><span class="__cf_email__" data-cfemail="e291978c918a8b8c879297808e8b8191818a8d8d8e8c8086a2858f838b8ecc818d8f">[email&#160;protected]</span></a><br>
+        <a href="/cdn-cgi/l/email-protection#e5938c8b8a81888c9191848996969596a58288848c89cb868a88" style="color:inherit;"><span class="__cf_email__" data-cfemail="f187989f9e959c988585909d82828182b1969c90989ddf929e9c">[email&#160;protected]</span></a>
       </p>
-      <a href="mailto:sunshinepublicschoolnbd@gmail.com">Email Us →</a>
+      <a href="/cdn-cgi/l/email-protection#1360667d607b7a7d766366717f7a7060707b7c7c7f7d717753747e727a7f3d707c7e">Email Us →</a>
     </div>
       <div class="card cc"><div class="cc-icon">🕐</div><h4>School Hours</h4><p>Monday – Saturday<br>8:00 AM – 4:00 PM<br>Sunday: Closed</p></div>
     </div>
@@ -2576,7 +2665,7 @@
         <div class="fi">
         <span class="ico">✉️</span>
         <p>
-          <a href="mailto:sunshinepublicschoolnbd@gmail.com" style="color:inherit;">sunshinepublicschoolnbd@gmail.com</a>
+          <a href="/cdn-cgi/l/email-protection#3546405b465d5c5b50454057595c5646565d5a5a595b5751755258545c591b565a58" style="color:inherit;"><span class="__cf_email__" data-cfemail="87f4f2e9f4efeee9e2f7f2e5ebeee4f4e4efe8e8ebe9e5e3c7e0eae6eeeba9e4e8ea">[email&#160;protected]</span></a>
         </p>
       </div>
         <div class="fi"><span class="ico">🕐</span><p>Mon–Sat: 8:00 AM – 4:00 PM</p></div>
@@ -2612,7 +2701,7 @@
 </footer>
 
 <!-- ===================== JAVASCRIPT ===================== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ------ SUN RAYS ------ */
 (function(){
   const rays = document.getElementById('sunRays');
@@ -2770,12 +2859,15 @@ function renderGallery(filter){
     const p = palettes[item.cat] || ['#451a03','#7c2d12'];
     const span = item.cols === 2 ? 'grid-column:span 2;' : '';
     const hasPhoto = item.src && item.src !== '';
+    const expandIcon = `<div class="photo-expand"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="10 2 14 2 14 6"/><polyline points="6 14 2 14 2 10"/><line x1="14" y1="2" x2="9" y2="7"/><line x1="2" y1="14" x2="7" y2="9"/></svg></div>`;
     const inner = hasPhoto
       ? `<img src="${item.src}" alt="${item.label}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">`
       : `<div class="slot-inner"><span class="slot-icon">${item.emoji}</span><div class="slot-label" style="color:rgba(255,255,255,.7)">${item.label}</div><div class="slot-cat" style="color:rgba(255,255,255,.7)">${item.cat}</div></div>`;
+    const slotAttrs = hasPhoto ? `data-src="${item.src}" data-label="${item.label}"` : '';
     return `
-      <div class="g-slot" style="${span}background:linear-gradient(145deg,${p[0]},${p[1]});border:none;position:relative;overflow:hidden;" data-cat="${item.cat}" data-label="${item.label}" data-idx="${i}">
+      <div class="g-slot${hasPhoto ? ' filled' : ''}" style="${span}background:linear-gradient(145deg,${p[0]},${p[1]});border:none;position:relative;overflow:hidden;" data-cat="${item.cat}" data-label="${item.label}" data-idx="${i}" ${slotAttrs}>
         ${inner}
+        ${hasPhoto ? expandIcon : ''}
         <div class="photo-overlay">
           <div class="photo-cap">${item.label}</div>
         </div>
@@ -2892,7 +2984,10 @@ function closeKzPopup(){
 /* ------ KID ZONE PHOTOS & VIDEO SETUP ------ */
 (function(){
   // Uses KZ_PHOTOS and KZ_YOUTUBE_ID from the config section above.
-  ['kzPhoto1','kzPhoto2','kzPhoto3'].forEach(function(id, i){
+  const kzIds    = ['kzPhoto1','kzPhoto2','kzPhoto3'];
+  const kzLabels = ['Kid Zone Photo 1','Kid Zone Photo 2','Kid Zone Photo 3'];
+
+  kzIds.forEach(function(id, i){
     const slot = document.getElementById(id);
     if(!slot) return;
     const url = KZ_PHOTOS[i] || '';
@@ -2901,6 +2996,23 @@ function closeKzPopup(){
       if(img){ img.src = url; slot.classList.add('has-img'); }
     }
   });
+
+  // Attach lightbox click to KidZone photo slots (only loaded ones)
+  function attachKzClicks(){
+    const loadedSlots = kzIds.map(id => document.getElementById(id))
+      .filter(slot => slot && slot.classList.contains('has-img'));
+    const items = loadedSlots.map(function(slot, i){
+      const img = slot.querySelector('img');
+      return { src: img ? img.src : '', label: kzLabels[kzIds.indexOf(slot.id)] || '' };
+    });
+    loadedSlots.forEach(function(slot, i){
+      slot.addEventListener('click', function(){
+        if(window._kzOpenLb) window._kzOpenLb(items, i);
+      });
+    });
+  }
+  // Run after all scripts loaded so _kzOpenLb is available
+  window.addEventListener('load', attachKzClicks);
 
   if(KZ_YOUTUBE_ID && KZ_YOUTUBE_ID !== ''){
     const box = document.getElementById('kzVideoBox');
@@ -3040,15 +3152,89 @@ function sendEnquiry(e){
       err.style.display = 'block';
       btn.textContent = 'Send Enquiry →';
       btn.disabled = false;
-      console.error(er);
-    });
+  });
 }
 </script>
 
-<!--
-═══════════════════════════════════════════════════════════════════
-  EmailJS LIBRARY — loads after page. Required for form emails.
-═══════════════════════════════════════════════════════════════════
--->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<!-- ===== GALLERY LIGHTBOX ===== -->
+<div id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-close" id="lbClose" title="Close">&#x2715;</button>
+  <button class="lb-nav" id="lbPrev" title="Previous">&#x2039;</button>
+  <button class="lb-nav" id="lbNext" title="Next">&#x203a;</button>
+  <div class="lb-inner">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+</div>
+
 <script>
+/* ===== GALLERY LIGHTBOX ===== */
+(function(){
+  let lbItems = [];   // [{src, label}]
+  let lbCur   = 0;
+
+  const lb      = document.getElementById('galleryLightbox');
+  const lbImg   = document.getElementById('lbImg');
+  const lbCap   = document.getElementById('lbCaption');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev  = document.getElementById('lbPrev');
+  const lbNext  = document.getElementById('lbNext');
+
+  function openLb(items, idx){
+    lbItems = items; lbCur = idx;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showLb();
+  }
+  function closeLb(){
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function showLb(){
+    const it = lbItems[lbCur];
+    lbImg.src = it.src;
+    lbImg.alt = it.label;
+    lbCap.textContent = it.label;
+  }
+  function prev(){ lbCur = (lbCur - 1 + lbItems.length) % lbItems.length; showLb(); }
+  function next(){ lbCur = (lbCur + 1) % lbItems.length; showLb(); }
+
+  lbClose.addEventListener('click', closeLb);
+  lbPrev.addEventListener('click', prev);
+  lbNext.addEventListener('click', next);
+  lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLb();
+    if(e.key === 'ArrowLeft') prev();
+    if(e.key === 'ArrowRight') next();
+  });
+
+  /* Touch swipe */
+  let tsX = null;
+  lb.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend',   e => {
+    if(tsX === null) return;
+    const dx = e.changedTouches[0].clientX - tsX;
+    if(Math.abs(dx) > 50){ dx < 0 ? next() : prev(); }
+    tsX = null;
+  });
+
+  /* Event delegation — one listener on the grid, works after every render */
+  document.addEventListener('click', function(e){
+    const slot = e.target.closest('.g-slot[data-src]');
+    if(!slot) return;
+    const grid = document.getElementById('galleryGrid');
+    if(!grid || !grid.contains(slot)) return;
+    const filled = Array.from(grid.querySelectorAll('.g-slot[data-src]'));
+    const items  = filled.map(s => ({ src: s.dataset.src, label: s.dataset.label || '' }));
+    const idx    = filled.indexOf(slot);
+    openLb(items, idx);
+  });
+
+  /* Expose openLb for KidZone photo slots */
+  window._kzOpenLb = openLb;
+})();
+</script>
+</body>
+</html>

@@ -493,57 +493,57 @@
     }
     .hero-stats { position: relative; z-index: 5; }
 
-    /* ── MOBILE: full photo visible, nothing cropped ── */
+    /* ── MOBILE: photo fills full width, auto height = no black bars ── */
     @media (max-width: 768px) {
       .ticker-wrap { margin-top: 60px !important; }
 
-      /* Make slider exactly fill remaining screen after navbar + ticker */
+      /* Let slider height be driven by the photo aspect ratio */
       #heroSlider {
-        height: calc(100svh - 98px);
-        min-height: 280px;
+        height: auto !important;
+        min-height: unset !important;
+        aspect-ratio: 4 / 3;
         background: #111;
+        overflow: hidden;
       }
 
-      /* Show FULL photo — no cropping */
+      /* Photo fills the box edge-to-edge, cover keeps it cropped nicely 
+         but now the BOX itself is the same ratio as the photo so nothing is cut */
       #heroSlider .hslide img {
-        object-fit: contain !important;
+        object-fit: cover !important;
         object-position: center center !important;
-        background: #111;
+        width: 100% !important;
+        height: 100% !important;
       }
 
-      /* Dark scrim only at bottom so buttons are readable */
-      .hslide > div:first-child[style*="gradient"] {
-        background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%) !important;
-      }
-
-      /* Buttons — compact, stacked, at very bottom */
+      /* Buttons row — small, inline, at bottom of photo */
       .hslide > div[style*="bottom"] {
-        bottom: 16px !important;
-        padding: 0 16px !important;
+        bottom: 40px !important;
+        padding: 0 12px !important;
         width: 100% !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: center !important;
         gap: 8px !important;
-        flex-wrap: wrap !important;
+        flex-wrap: nowrap !important;
       }
       .hslide .btn-sun {
-        padding: 9px 18px !important;
+        padding: 8px 16px !important;
         font-size: 12px !important;
         border-radius: 99px !important;
         white-space: nowrap !important;
+        box-shadow: none !important;
       }
       .hslide .btn-outline {
-        padding: 9px 18px !important;
+        padding: 8px 16px !important;
         font-size: 12px !important;
         border-radius: 99px !important;
         white-space: nowrap !important;
       }
 
-      /* Arrows and dots */
-      #slideDots { bottom: 8px !important; gap: 6px !important; }
-      #slidePrev { left: 8px !important; width: 34px !important; height: 34px !important; font-size: 18px !important; top: 45% !important; }
-      #slideNext { right: 8px !important; width: 34px !important; height: 34px !important; font-size: 18px !important; top: 45% !important; }
+      /* Dots and arrows */
+      #slideDots { bottom: 10px !important; gap: 6px !important; }
+      #slidePrev { left: 8px !important; width: 32px !important; height: 32px !important; font-size: 16px !important; }
+      #slideNext { right: 8px !important; width: 32px !important; height: 32px !important; font-size: 16px !important; }
     }
     /* big decorative sun */
     .hero-sun-bg {
@@ -1497,8 +1497,8 @@
       <!-- Desktop links -->
       <div class="nav-links" id="navLinks">
         <span class="nav-link" onclick="goTo('about')">About</span>
-        <span class="nav-link" onclick="goTo('admissions')">Admissions</span>
         <span class="nav-link" onclick="goTo('kidzone')" style="background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff!important;border-radius:8px;font-weight:700;position:relative;">🎪 Kid Zone <span style="position:absolute;top:-6px;right:-4px;background:#fde68a;color:#1c1008;font-size:8px;font-weight:800;padding:1px 5px;border-radius:99px;letter-spacing:.06em;">NEW</span></span>
+        <span class="nav-link" onclick="goTo('admissions')">Admissions</span>
         <span class="nav-link" onclick="goTo('gallery')">Gallery</span>
         <span class="nav-link" onclick="goTo('notices')">Notices</span>
         <!-- <span class="nav-link" onclick="goTo('fees')">Fees</span>   -->
@@ -2403,7 +2403,7 @@
     <div class="section-header reveal">
       <div class="badge" style="background:var(--sky-light);color:var(--sky);">Mandatory Disclosure</div>
       <h2 class="section-heading">Public <span class="text-sun">Disclosure</span></h2>
-      <p class="section-sub">All mandatory school documents are available on Google Drive as required under CBSE / UP Govt. / RTE norms.</p>
+      <p class="section-sub">All mandatory school documents are availablle as required under CBSE / UP Govt. / RTE norms.</p>
     </div>
 
     <!-- What's inside -->
@@ -2431,8 +2431,8 @@
     <!-- Drive card -->
     <div class="disc-card reveal">
       <div class="disc-icon">☁️</div>
-      <h3>All Documents on Google Drive</h3>
-      <p>All mandatory public disclosure documents — including certificates, staff information, fee structure, infrastructure details, and board results — are available in our Google Drive folder.</p>
+      <h3>All Documents</h3>
+      <p>All mandatory public disclosure documents — including certificates, staff information, fee structure, infrastructure details, and board results — are available.</p>
 
       <!--
         ============================================================
@@ -2445,7 +2445,7 @@
       -->
       <a class="disc-drive-btn" href="YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.28 3L1 12.27 4.08 17.7l5.27-9.13zM7.41 19H17.6l3.09-5.42H4.33zM14.31 3H9.69L4.42 12.3H19.6z"/></svg>
-        View All Documents on Google Drive
+        View All Documents
       </a>
       <p class="disc-note">Documents updated regularly. For physical copies, visit the school office during working hours (Mon–Sat, 8 AM – 4 PM).</p>
     </div>
@@ -2465,8 +2465,16 @@
 
    <div class="contact-cards reveal">
       <div class="card cc"><div class="cc-icon">📍</div><h4>Our Address</h4><p>Fazalpur Tabela, Bijnor NH-74, Kotwali Rd, Najibabad, Uttar Pradesh 246763</p></div>
-      <div class="card cc"><div class="cc-icon">📞</div><h4>Phone</h4><p>+91-8279856292 (Office)<br>+91-XXXXX-XXXXX (Principal)</p><a href="tel:+918279856292">Call Now →</a></div>
-      <div class="card cc"><div class="cc-icon">✉️</div><h4>Email</h4><p><a href="/cdn-cgi/l/email-protection#9be8eef5e8f3f2f5feebeef9f7f2f8e8f8f3f4f4f7f5f9ffdbfcf6faf2f7b5f8f4f6" style="color:inherit;"><span class="__cf_email__" data-cfemail="3a494f54495253545f4a4f5856535949595255555654585e7a5d575b535614595557">[email&#160;protected]</span></a><br><a href="/cdn-cgi/l/email-protection#8ef8e7e0e1eae3e7fafaefe2fdfdfefdcee9e3efe7e2a0ede1e3" style="color:inherit;"><span class="__cf_email__" data-cfemail="bccad5d2d3d8d1d5c8c8ddd0cfcfcccffcdbd1ddd5d092dfd3d1">[email&#160;protected]</span></a></p><a href="/cdn-cgi/l/email-protection#6013150e1308090e051015020c09031303080f0f0c0e020420070d01090c4e030f0d">Email Us →</a></div>
+      <div class="card cc"><div class="cc-icon">📞</div><h4>Phone</h4><p>+91-8279856292 (Office)<br>+91-7417522732 (Principal)</p><a href="tel:+918279856292">Call Now →</a></div>
+      <div class="card cc">
+    <div class="cc-icon">✉️</div>
+      <h4>Email</h4>
+      <p>
+        <a href="mailto:sunshinepublicschoolnbd@gmail.com" style="color:inherit;">sunshinepublicschoolnbd@gmail.com</a><br>
+        <a href="mailto:vinodmittalssps@gmail.com" style="color:inherit;">vinodmittalssps@gmail.com</a>
+      </p>
+      <a href="mailto:sunshinepublicschoolnbd@gmail.com">Email Us →</a>
+    </div>
       <div class="card cc"><div class="cc-icon">🕐</div><h4>School Hours</h4><p>Monday – Saturday<br>8:00 AM – 4:00 PM<br>Sunday: Closed</p></div>
     </div>
 
@@ -2522,145 +2530,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════════
-     SETUP GUIDE — visible on the website for the school manager.
-     Remove this entire section once setup is complete.
-════════════════════════════════════════════════════════════════ -->
-<!-- <section id="setup-guide" style="background:#0f172a;padding:72px 0;">
-  <div class="container">
-
-    <div style="text-align:center;margin-bottom:48px;">
-      <div style="display:inline-block;background:#f59e0b;color:#1c1008;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 16px;border-radius:99px;margin-bottom:14px;">🛠 School Manager Setup Guide</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:#fff;margin-bottom:10px;">3 Things to Activate</h2>
-      <p style="color:#94a3b8;font-size:14px;">Complete these 3 steps and your website will be fully live and functional.</p>
-      <p style="color:#475569;font-size:12px;margin-top:8px;">💡 Delete this section from index.html once you're done (search for <code style="background:#1e293b;color:#fde68a;padding:2px 6px;border-radius:4px;">id="setup-guide"</code>)</p>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-
-      STEP 1 — EmailJS 
-      <div style="background:#1e293b;border:1px solid #334155;border-radius:20px;padding:28px;border-top:3px solid #f59e0b;">
-        <div style="width:40px;height:40px;background:#f59e0b;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px;">📧</div>
-        <h3 style="font-family:'Cormorant Garamond',serif;color:#fff;font-size:1.2rem;font-weight:700;margin-bottom:6px;">Step 1 — Activate "Send Message" &amp; Enquiry Forms</h3>
-        <p style="font-size:12px;color:#94a3b8;line-height:1.65;margin-bottom:16px;">Uses <strong style="color:#fde68a;">EmailJS</strong> — 100% free, no server needed. Messages land directly in your inbox.</p>
-
-        <div style="background:#0f172a;border-radius:12px;padding:16px;font-size:12px;color:#94a3b8;line-height:1.9;">
-          <div style="color:#fde68a;font-weight:700;margin-bottom:8px;">📋 Follow these steps:</div>
-          <div>1. Go to <a href="https://www.emailjs.com" target="_blank" style="color:#38bdf8;">emailjs.com</a> → Sign up FREE</div>
-          <div>2. Click <strong style="color:#e2e8f0;">Email Services</strong> → Add Service → Choose <strong style="color:#e2e8f0;">Gmail</strong></div>
-          <div>3. Connect your Gmail (e.g. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="12616162613c61717a7d7d7e52757f737b7e3c717d7f">[email&#160;protected]</a>) → Copy the <strong style="color:#fde68a;">Service ID</strong></div>
-          <div style="margin-top:8px;color:#fde68a;font-weight:700;">Create Template 1 — Contact Form:</div>
-          <div>4. Click <strong style="color:#e2e8f0;">Email Templates</strong> → New Template → Name it <em>contact</em></div>
-          <div>5. In Subject: <code style="background:#1e293b;color:#86efac;padding:1px 5px;border-radius:3px;">New message from {{from_name}}</code></div>
-          <div>6. In Body:<br>
-            <code style="background:#1e293b;color:#86efac;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;line-height:1.8;">
-              Name: {{from_name}}<br>Phone: {{phone}}<br>Email: {{email}}<br>Message: {{message}}
-            </code>
-          </div>
-          <div>7. Save → Copy the <strong style="color:#fde68a;">Template ID</strong></div>
-          <div style="margin-top:8px;color:#fde68a;font-weight:700;">Create Template 2 — Admission Enquiry:</div>
-          <div>8. New Template → Name it <em>enquiry</em></div>
-          <div>9. Subject: <code style="background:#1e293b;color:#86efac;padding:1px 5px;border-radius:3px;">Admission Enquiry – {{class_apply}}</code></div>
-          <div>10. Body:<br>
-            <code style="background:#1e293b;color:#86efac;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;line-height:1.8;">
-              Student: {{student_name}}<br>Parent: {{parent_name}}<br>Phone: {{phone}}<br>Class: {{class_apply}}<br>Message: {{message}}
-            </code>
-          </div>
-          <div>11. Save → Copy the <strong style="color:#fde68a;">Template ID</strong></div>
-          <div style="margin-top:8px;color:#fde68a;font-weight:700;">Get your Public Key:</div>
-          <div>12. Go to <strong style="color:#e2e8f0;">Account → General</strong> → Copy <strong style="color:#fde68a;">Public Key</strong></div>
-          <div style="margin-top:12px;color:#fde68a;font-weight:700;">Now paste into index.html:</div>
-          <div>13. Open <code style="background:#1e293b;color:#86efac;padding:1px 5px;border-radius:3px;">index.html</code> in Notepad</div>
-          <div>14. Find these 4 lines near the bottom:</div>
-          <code style="background:#0f172a;color:#86efac;padding:8px;border-radius:6px;display:block;margin:8px 0;font-size:11px;line-height:2;">
-            const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';<br>
-            const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';<br>
-            const EMAILJS_CONTACT_TEMPLATE = 'YOUR_CONTACT_TEMPLATE';<br>
-            const EMAILJS_ENQUIRY_TEMPLATE = 'YOUR_ENQUIRY_TEMPLATE';
-          </code>
-          <div>15. Replace each <code style="color:#fca5a5;">'YOUR_...'</code> with your actual IDs → Save</div>
-          <div style="margin-top:10px;background:#14532d;border-radius:8px;padding:8px 12px;color:#86efac;">✅ Done! Both forms will now email you instantly.</div>
-        </div>
-      </div>
-
-       STEP 2 — Google Drive 
-      <div style="background:#1e293b;border:1px solid #334155;border-radius:20px;padding:28px;border-top:3px solid #38bdf8;">
-        <div style="width:40px;height:40px;background:#38bdf8;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px;">☁️</div>
-        <h3 style="font-family:'Cormorant Garamond',serif;color:#fff;font-size:1.2rem;font-weight:700;margin-bottom:6px;">Step 2 — Add Google Drive Link (Disclosure)</h3>
-        <p style="font-size:12px;color:#94a3b8;line-height:1.65;margin-bottom:16px;">Upload all mandatory school documents to Google Drive so parents and authorities can view them.</p>
-
-        <div style="background:#0f172a;border-radius:12px;padding:16px;font-size:12px;color:#94a3b8;line-height:1.9;">
-          <div style="color:#38bdf8;font-weight:700;margin-bottom:8px;">📋 Follow these steps:</div>
-          <div>1. Go to <a href="https://drive.google.com" target="_blank" style="color:#38bdf8;">drive.google.com</a> → Sign in</div>
-          <div>2. Click <strong style="color:#e2e8f0;">+ New</strong> → <strong style="color:#e2e8f0;">New Folder</strong></div>
-          <div>3. Name it: <em style="color:#fde68a;">SSPS Public Disclosure 2025</em></div>
-          <div>4. Upload these documents into the folder:</div>
-          <div style="margin-left:12px;color:#e2e8f0;">
-            • Affiliation / Recognition Certificate<br>
-            • Trust/Society Registration<br>
-            • Fire &amp; Building Safety Certificate<br>
-            • Staff qualification list<br>
-            • Fee Structure chart<br>
-            • Board exam result sheets<br>
-            • Water &amp; Sanitation certificate
-          </div>
-          <div style="margin-top:8px;">5. Right-click the folder → <strong style="color:#e2e8f0;">Share</strong></div>
-          <div>6. Under "General Access" → Change from <em>Restricted</em> to <strong style="color:#fde68a;">Anyone with the link</strong></div>
-          <div>7. Click <strong style="color:#e2e8f0;">Copy link</strong></div>
-          <div style="margin-top:12px;color:#38bdf8;font-weight:700;">Now paste into index.html:</div>
-          <div>8. Open <code style="background:#1e293b;color:#86efac;padding:1px 5px;border-radius:3px;">index.html</code> → Find this line:</div>
-           <code style="background:#0f172a;color:#fca5a5;padding:6px 10px;border-radius:6px;display:block;margin:6px 0;font-size:11px;">
-            href="YOUR_GOOGLE_DRIVE_LINK_HERE"
-          </code>
-          <div>9. Replace <code style="color:#fca5a5;">"YOUR_GOOGLE_DRIVE_LINK_HERE"</code> with your copied link (keep the quotes)</div>
-          <div>10. Save the file → Upload to GitHub</div>
-          <div style="margin-top:10px;background:#0c4a6e;border-radius:8px;padding:8px 12px;color:#7dd3fc;">✅ Done! The "View on Google Drive" button in the Disclosure section will now open your folder.</div>
-        </div>
-      </div>
-
-       STEP 3 — Deploy on Vercel -->
-      <!-- <div style="background:#1e293b;border:1px solid #334155;border-radius:20px;padding:28px;border-top:3px solid #a78bfa;">
-        <div style="width:40px;height:40px;background:#a78bfa;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px;">🚀</div>
-        <h3 style="font-family:'Cormorant Garamond',serif;color:#fff;font-size:1.2rem;font-weight:700;margin-bottom:6px;">Step 3 — Deploy on Vercel + Connect GoDaddy Domain</h3>
-        <p style="font-size:12px;color:#94a3b8;line-height:1.65;margin-bottom:16px;">Host on Vercel (free) and connect your <strong style="color:#fde68a;">sunshinepublicschool.com</strong> GoDaddy domain.</p>
-
-        <div style="background:#0f172a;border-radius:12px;padding:16px;font-size:12px;color:#94a3b8;line-height:1.9;">
-          <div style="color:#a78bfa;font-weight:700;margin-bottom:8px;">A) Upload to GitHub:</div>
-          <div>1. Go to <a href="https://github.com" target="_blank" style="color:#38bdf8;">github.com</a> → Create free account</div>
-          <div>2. Click <strong style="color:#e2e8f0;">New Repository</strong> → Name: <em>sunshine-school</em> → Public → Create</div>
-          <div>3. Click <strong style="color:#e2e8f0;">Add file → Upload files</strong> → Upload <code style="color:#86efac;">index.html</code> and <code style="color:#86efac;">vercel.json</code></div>
-          <div>4. Click <strong style="color:#e2e8f0;">Commit changes</strong></div>
-
-          <div style="margin-top:12px;color:#a78bfa;font-weight:700;">B) Deploy on Vercel:</div>
-          <div>5. Go to <a href="https://vercel.com" target="_blank" style="color:#38bdf8;">vercel.com</a> → Sign up with GitHub</div>
-          <div>6. Click <strong style="color:#e2e8f0;">Add New Project</strong> → Import <em>sunshine-school</em> → <strong style="color:#e2e8f0;">Deploy</strong></div>
-          <div>7. Site goes live instantly at <em style="color:#86efac;">sunshine-school.vercel.app</em> ✅</div>
-
-          <div style="margin-top:12px;color:#a78bfa;font-weight:700;">C) Connect GoDaddy Domain:</div>
-          <div>8. In Vercel → Your project → <strong style="color:#e2e8f0;">Settings → Domains</strong></div>
-          <div>9. Type <code style="color:#fde68a;">sunshinepublicschool.com</code> → Add</div>
-          <div>10. Vercel shows DNS records — now go to GoDaddy:</div>
-          <div>11. GoDaddy → My Domains → <strong style="color:#e2e8f0;">DNS</strong> → Add these records:</div>
-          <div style="margin-left:12px;">
-            <code style="background:#1e293b;color:#86efac;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;">
-              Type: A &nbsp;&nbsp; Name: @ &nbsp;&nbsp; Value: 76.76.21.21<br>
-              Type: CNAME &nbsp; Name: www &nbsp; Value: cname.vercel-dns.com
-            </code>
-          </div>
-          <div>12. Save → Wait 15–60 minutes</div>
-          <div style="margin-top:10px;background:#2e1065;border-radius:8px;padding:8px 12px;color:#c4b5fd;">✅ Done! Site live at sunshinepublicschool.com with free HTTPS 🔒</div>
-
-          <div style="margin-top:12px;color:#fde68a;font-weight:700;">How to update site later:</div>
-          <div>• Edit <code style="color:#86efac;">index.html</code> on your computer</div>
-          <div>• Go to GitHub → your repo → click the file → ✏️ Edit → paste new content → Commit</div>
-          <div>• Vercel auto-deploys in ~30 seconds ⚡</div>
-        </div>
-      </div>
-
-    </div> /grid 
-  </div>
-</section>  -->
-
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="container">
@@ -2704,7 +2573,12 @@
         <h5>Contact Info</h5>
         <div class="fi"><span class="ico">📍</span><p>Fazalpur Tabela, Bijnor NH-74, Kotwali Rd, Najibabad, UP 246763</p></div>
         <div class="fi"><span class="ico">📞</span><p><a href="tel:+918279856292">+91-8279856292</a></p></div>
-        <div class="fi"><span class="ico">✉️</span><p><a href="/cdn-cgi/l/email-protection#d2a1a7bca1babbbcb7a2a7b0bebbb1a1b1babdbdbebcb0b692b5bfb3bbbefcb1bdbf" style="color:inherit;"><span class="__cf_email__" data-cfemail="2350564d504b4a4d465356414f4a4050404b4c4c4f4d414763444e424a4f0d404c4e">[email&#160;protected]</span></a></p></div>
+        <div class="fi">
+        <span class="ico">✉️</span>
+        <p>
+          <a href="mailto:sunshinepublicschoolnbd@gmail.com" style="color:inherit;">sunshinepublicschoolnbd@gmail.com</a>
+        </p>
+      </div>
         <div class="fi"><span class="ico">🕐</span><p>Mon–Sat: 8:00 AM – 4:00 PM</p></div>
         <div class="fi"><span class="ico">🌐</span><p><a href="https://www.sunshinepublicschoolnbd.com" target="_blank">sunshinepublicschoolnbd.com</a></p></div>
         <!-- Footer social links -->
@@ -2849,6 +2723,7 @@ const KZ_YOUTUBE_ID = '';
 // ─────────────────────────────────────────────────
 const gallerySlots = [
   {src:'School Photo/IMG_5798.png', cat:'Campus',    label:'School Main Building',  emoji:'🏫', cols:2},
+  {src:'School Photo/building.png', cat:'Campus',    label:'School Main Building',  emoji:'🏫', cols:2},
 
   {src:'School Photo/IMG-20260323-WA0036.jpg.jpeg', cat:'Cultural',  label:'Paying Respect to Goddess Saraswati',     emoji:'🇮🇳', cols:2},
 
