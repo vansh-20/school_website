@@ -261,8 +261,10 @@
     }
     .doc-btn.download:hover { background: var(--green); color: #fff; }
     .doc-btn.coming {
-      background: var(--warm-100); color: var(--slate-500); cursor: default;
+      background: var(--warm-100); color: var(--slate-500); cursor: not-allowed;
+      opacity: 0.75; font-style: italic;
     }
+    .doc-btn.coming:hover { background: var(--warm-100); color: var(--slate-500); }
     .doc-tag {
       display: inline-block; font-size: 10px; font-weight: 700;
       padding: 2px 8px; border-radius: 99px; margin-bottom: 6px;
@@ -363,7 +365,7 @@
         <div class="nav-sub">Fazalpur Tabela · Najibabad · Bijnor</div>
       </div>
     </div>
-    <a href="index_final_1.html" class="back-btn">
+    <a href="/" class="back-btn">
       ← Back to Home
     </a>
   </div>
@@ -423,7 +425,7 @@
       <div class="info-row"><span class="info-label">City / District</span><span class="info-value">Najibabad, Bijnor</span></div>
       <div class="info-row"><span class="info-label">State</span><span class="info-value">Uttar Pradesh – 246763</span></div>
       <div class="info-row"><span class="info-label">Phone</span><span class="info-value">+91-8279856292</span></div>
-      <div class="info-row"><span class="info-label">Email</span><span class="info-value">sunshinepublicschoolnbd@gmail.com</span></div>
+      <div class="info-row"><span class="info-label">Email</span><span class="info-value"> sunshinepublicschoolnbd@gmail.com </span></div>
     </div>
 
     <!-- Academic Info -->
@@ -489,14 +491,14 @@
         <div class="doc-name">Trust / Society Registration Certificate</div>
         <div class="doc-desc">Registration certificate of the managing trust or society under which the school operates.</div>
         <div class="doc-actions">
-          <a class="doc-btn view" href="School Doc/Trust_Registration.pdf" target="_blank">👁 View</a>
-          <a class="doc-btn download" href="School Doc/Trust_Registration.pdf" download>⬇ Download</a>
+          <button class="doc-btn coming" disabled title="Document coming soon">🕐 Coming Soon</button>
+          <button class="doc-btn coming" disabled title="Document coming soon">📋 Not Available</button>
         </div>
       </div>
     </div>
 
     <!-- 3 -->
-    <div class="doc-card">
+   <div class="doc-card">
       <div class="doc-icon-wrap">🔥</div>
       <div class="doc-body">
         <span class="doc-tag mandatory">Mandatory</span>
@@ -508,6 +510,7 @@
         </div>
       </div>
     </div>
+
 
     <!-- 4 -->
     <div class="doc-card">
@@ -531,8 +534,8 @@
         <div class="doc-name">Drinking Water &amp; Sanitation Certificate</div>
         <div class="doc-desc">Certificate confirming availability of safe drinking water and adequate sanitation facilities.</div>
         <div class="doc-actions">
-          <a class="doc-btn view" href="School Docs/Sanitation_Certificate.pdf" target="_blank">👁 View</a>
-          <a class="doc-btn download" href="School Docs/Sanitation_Certificate.pdf" download>⬇ Download</a>
+          <button class="doc-btn coming" disabled title="Document coming soon">🕐 Coming Soon</button>
+          <button class="doc-btn coming" disabled title="Document coming soon">📋 Not Available</button>
         </div>
       </div>
     </div>
@@ -545,14 +548,14 @@
         <div class="doc-name">Land / Building Ownership or Lease Deed</div>
         <div class="doc-desc">Document confirming ownership or long-term lease of the school's land and building.</div>
         <div class="doc-actions">
-          <a class="doc-btn view" href="School Docs/Land_Documents.pdf" target="_blank">👁 View</a>
-          <a class="doc-btn download" href="School Docs/Land_Documents.pdf" download>⬇ Download</a>
+          <button class="doc-btn coming" disabled title="Document coming soon">🕐 Coming Soon</button>
+          <button class="doc-btn coming" disabled title="Document coming soon">📋 Not Available</button>
         </div>
       </div>
     </div> -->
 
     <!-- 7 -->
-    <div class="doc-card">
+     <div class="doc-card">
       <div class="doc-icon-wrap">📝</div>
       <div class="doc-body">
         <span class="doc-tag mandatory">Mandatory</span>
@@ -573,8 +576,8 @@
         <div class="doc-name">Fee Structure (Current Session)</div>
         <div class="doc-desc">Approved fee structure for the academic session 2025–26 as per state norms.</div>
         <div class="doc-actions">
-          <a class="doc-btn view" href="School Docs/Fee_Structure_2025-26.pdf" target="_blank">👁 View</a>
-          <a class="doc-btn download" href="School Docs/Fee_Structure_2025-26.pdf" download>⬇ Download</a>
+          <button class="doc-btn coming" disabled title="Document coming soon">🕐 Coming Soon</button>
+          <button class="doc-btn coming" disabled title="Document coming soon">📋 Not Available</button>
         </div>
       </div>
     </div> -->
@@ -587,8 +590,8 @@
         <div class="doc-name">Staff Information Sheet</div>
         <div class="doc-desc">List of all teaching and non-teaching staff with qualifications and designations.</div>
         <div class="doc-actions">
-          <a class="doc-btn view" href="School Docs/Staff_Information.pdf" target="_blank">👁 View</a>
-          <a class="doc-btn download" href="School Docs/Staff_Information.pdf" download>⬇ Download</a>
+          <button class="doc-btn coming" disabled title="Document coming soon">🕐 Coming Soon</button>
+          <button class="doc-btn coming" disabled title="Document coming soon">📋 Not Available</button>
         </div>
       </div>
     </div> -->
@@ -601,14 +604,14 @@
         <div class="doc-name">Board Exam Results (Last 3 Years)</div>
         <div class="doc-desc">Class X and XII board examination results for 2022, 2023, and 2024 sessions.</div>
         <div class="doc-actions">
-          <a class="doc-btn view" href="School Docs/Board_Results.pdf" target="_blank">👁 View</a>
-          <a class="doc-btn download" href="School Docs/Board_Results.pdf" download>⬇ Download</a>
+          <button class="doc-btn coming" disabled title="Document coming soon">🕐 Coming Soon</button>
+          <button class="doc-btn coming" disabled title="Document coming soon">📋 Not Available</button>
         </div>
       </div>
     </div> -->
 
     <!-- 11 -->
-    <div class="doc-card">
+     <div class="doc-card">
       <div class="doc-icon-wrap">🏛️</div>
       <div class="doc-body">
         <span class="doc-tag mandatory">Mandatory</span>
@@ -629,8 +632,8 @@
         <div class="doc-name">Infrastructure &amp; Facility Details</div>
         <div class="doc-desc">Information on classrooms, labs, library, sports area, and other infrastructure.</div>
         <div class="doc-actions">
-          <a class="doc-btn view" href="School Docs/Infrastructure_Details.pdf" target="_blank">👁 View</a>
-          <a class="doc-btn download" href="School Docs/Infrastructure_Details.pdf" download>⬇ Download</a>
+          <button class="doc-btn coming" disabled title="Document coming soon">🕐 Coming Soon</button>
+          <button class="doc-btn coming" disabled title="Document coming soon">📋 Not Available</button>
         </div>
       </div>
     </div> -->
@@ -939,11 +942,8 @@
 <div class="page-footer">
   <strong>Sun Shine Public School</strong> · Fazalpur Tabela, Bijnor NH-74, Kotwali Rd, Najibabad, UP – 246763<br>
   📞 <a href="tel:+918279856292">+91-8279856292</a> &nbsp;|&nbsp;
-  ✉ <a href="mailto:sunshinepublicschoolnbd@gmail.com">sunshinepublicschoolnbd@gmail.com</a><br><br>
-  &copy; 2025 Sun Shine Public School. All rights reserved. &nbsp;|&nbsp;
-  <a href="index_final_1.html">← Back to Main Website</a>
+  ✉ <a href="mailto:sunshinepublicschoolnbd@gmail.com">sunshinepublicschoolnbd@gmail.com</a>.
 </div>
-
 <script>
   // Scroll-based fade-up animation
   const observer = new IntersectionObserver((entries) => {

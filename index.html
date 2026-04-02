@@ -101,10 +101,12 @@
     .section-header { text-align: center; margin-bottom: 56px; }
     .card { background: #fff; border: 1px solid #fde68a; border-radius: 20px; overflow: hidden; transition: transform .3s, box-shadow .3s; }
     .card:hover { transform: translateY(-5px); box-shadow: 0 18px 48px rgba(245,158,11,.15); }
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .35s ease, transform .35s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-    .reveal-d1 { transition-delay: .1s; } .reveal-d2 { transition-delay: .2s; }
-    .reveal-d3 { transition-delay: .3s; } .reveal-d4 { transition-delay: .4s; }
+    .reveal-d1 { transition-delay: .05s; } .reveal-d2 { transition-delay: .1s; }
+    .reveal-d3 { transition-delay: .15s; } .reveal-d4 { transition-delay: .2s; }
+    /* gallery grid is always visible — it renders via JS after page load */
+    #galleryGrid { opacity: 1 !important; transform: none !important; }
     .divider { height: 1px; background: linear-gradient(90deg, transparent, #fde68a, transparent); }
 
     /* ===== NAVBAR ===== */
@@ -112,13 +114,14 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 14px 0; transition: all .3s;
     }
+    #navbar .container { padding: 0 12px 0 8px; }
     #navbar.scrolled {
       background: rgba(255,251,240,.97); backdrop-filter: blur(12px);
       box-shadow: 0 2px 20px rgba(245,158,11,.15); padding: 8px 0;
     }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     /* Brand */
-    .nav-brand { display: flex; align-items: center; gap: 10px; cursor: pointer; flex-shrink: 0; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; cursor: pointer; flex-shrink: 0; flex: 1; }
     .nav-sun {
       width: 52px; height: 52px; position: relative; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
@@ -141,11 +144,12 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .nav-brand-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 23px; font-weight: 700; line-height: 1.1; transition: all .3s;
+      font-size: 30px; font-weight: 700; line-height: 1.1; transition: all .3s;
       color: #d97706;
       -webkit-text-fill-color: #d97706;
       text-shadow: 0 1px 6px rgba(0,0,0,.5);
       letter-spacing: .01em;
+      white-space: nowrap;
     }
     #navbar.scrolled .nav-brand-name {
       background: linear-gradient(135deg, #451a03 0%, #7c2d12 50%, #92400e 100%);
@@ -648,6 +652,145 @@
     .hl-icon { width: 52px; height: 52px; background: var(--warm-100); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
     .hl-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--slate-800); margin-bottom: 8px; }
     .hl-card p { font-size: 13px; color: var(--slate-500); line-height: 1.65; }
+
+    /* ===== MESSAGES SECTION ===== */
+    #messages { background: linear-gradient(160deg, #fffbf0 0%, #fef3c7 60%, #fffbf0 100%); }
+    .msg-section-header { text-align: center; margin-bottom: 64px; }
+    .msg-wrapper { display: flex; flex-direction: column; gap: 56px; }
+    .msg-card {
+      background: #fff;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--warm-200);
+      box-shadow: 0 6px 32px rgba(245,158,11,.08);
+      transition: transform .3s, box-shadow .3s;
+      display: flex; flex-direction: row;
+      min-height: 340px;
+    }
+    .msg-card:hover { transform: translateY(-4px); box-shadow: 0 18px 52px rgba(245,158,11,.15); }
+
+    /* left coloured panel */
+    .msg-card-top {
+      width: 280px; flex-shrink: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 44px 32px;
+      position: relative; text-align: center;
+    }
+    .msg-card-top.md-top {
+      background: linear-gradient(160deg, #451a03, #7c2d12);
+    }
+    .msg-card-top.principal-top {
+      background: linear-gradient(160deg, #0c4a6e, #0369a1);
+    }
+    /* diagonal right edge */
+    .msg-card-top::after {
+      content: '';
+      position: absolute; right: -28px; top: 0; bottom: 0;
+      width: 56px;
+      clip-path: polygon(0 0, 0% 100%, 100% 100%);
+      z-index: 2;
+    }
+    .msg-card-top.md-top::after   { background: linear-gradient(160deg, #451a03, #7c2d12); }
+    .msg-card-top.principal-top::after { background: linear-gradient(160deg, #0c4a6e, #0369a1); }
+
+    /* photo frame */
+    .msg-photo-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .msg-photo {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(255,255,255,.3);
+      box-shadow: 0 8px 28px rgba(0,0,0,.35);
+      display: block;
+      background: rgba(255,255,255,.1);
+    }
+    .msg-photo-placeholder {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 3px dashed rgba(255,255,255,.35);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-size: 11px; color: rgba(255,255,255,.5);
+      font-weight: 600; text-align: center; line-height: 1.5;
+      background: rgba(255,255,255,.07);
+    }
+    .msg-photo-placeholder span { font-size: 32px; display: block; margin-bottom: 5px; }
+    .msg-role-badge {
+      position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+      font-size: 10px; font-weight: 800; letter-spacing: .06em;
+      text-transform: uppercase; padding: 4px 12px;
+      border-radius: 99px; white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    }
+    .md-top .msg-role-badge { background: var(--sun-glow); color: #451a03; }
+    .principal-top .msg-role-badge { background: #bae6fd; color: #0c4a6e; }
+    .msg-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: #fff; margin-bottom: 4px; line-height: 1.2;
+      position: relative; z-index: 3;
+    }
+    .msg-designation {
+      font-size: 11px; color: rgba(255,255,255,.6);
+      font-weight: 500; line-height: 1.5;
+      position: relative; z-index: 3;
+    }
+
+    /* right body / quote */
+    .msg-body {
+      flex: 1; padding: 40px 44px 36px 56px;
+      display: flex; flex-direction: column;
+      justify-content: center;
+    }
+    .msg-quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5.5rem; line-height: .65;
+      color: var(--warm-200);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .msg-card:nth-child(2) .msg-quote-mark { color: #bae6fd; }
+    .msg-text {
+      font-size: 14.5px; color: var(--slate-600);
+      line-height: 1.88;
+      font-style: italic;
+    }
+    .msg-signature {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--warm-100);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .msg-sig-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--slate-800);
+    }
+    .msg-sig-role { font-size: 11.5px; color: var(--slate-500); margin-top: 3px; }
+    .msg-sig-icon { font-size: 2rem; }
+
+    /* responsive — stack vertically on smaller screens */
+    @media (max-width: 860px) {
+      .msg-card { flex-direction: column; min-height: unset; }
+      .msg-card-top { width: 100%; padding: 36px 28px 52px; }
+      .msg-card-top::after {
+        right: unset; left: 0; bottom: -28px; top: unset;
+        width: 100%; height: 56px;
+        clip-path: polygon(0 0, 100% 0, 100% 100%);
+      }
+      .msg-body { padding: 48px 28px 32px; }
+    }
+    @media (max-width: 600px) {
+      .msg-body { padding: 40px 20px 28px; }
+      .msg-card-top { padding: 28px 20px 48px; }
+      .msg-photo { width: 100px; height: 100px; }
+      .msg-photo-placeholder { width: 100px; height: 100px; }
+      .msg-text { font-size: 13.5px; }
+    }
 
     /* ===== ADMISSIONS ===== */
     #admissions { background: var(--warm-50); }
@@ -1667,20 +1810,12 @@
     <div class="ticker-label">📢 News</div>
     <div class="ticker-track">
       <div class="ticker-items">
-        <span>🎓 Admissions open for Session 2026–27 — Apply before 30 April 2026</span>
-        <span>🏆 Result Declared of Session 2025-26 </span>
-        <span>📝 Kid Zone Grand Opening 23 March 2026</span>
-        <!-- <span>🎨 Inter-School Art Competition — Results announced!</span> -->
-        <!-- <span>📅 Parent-Teacher Meeting: 20 January 2025 at 10:00 AM</span> -->
-        <span>🌟 Best of Luck for Board Exam 2026 </span>
-        <!-- <span>🎤 Annual Function 2025 — Cultural performance registrations open</span>
-        <span>🎓 Admissions open for Session 2025–26 — Apply before 31 March 2025</span>
-        <span>🏆 Annual Sports Day — 15 February 2025 · All parents warmly invited</span>
-        <span>📝 Half-Yearly Exam Schedule released — Check Notice Board</span> -->
-        <!-- <span>🎨 Inter-School Art Competition — Results announced!</span> -->
-        <span>📅 Parent-Teacher Meeting: 28 March 2026 at 10:00 AM</span>
-        <!-- <span>🌟 Board Exam 2024 — 100% Pass Rate!</span> -->
-        <!-- <span>🎤 Annual Function 2025 — Cultural performance registrations open</span> -->
+      <span>🎓 Admissions Open 2026–27 — Secure Your Child’s Bright Future Today!</span>
+      <span>🏫 Hurry Up — Enroll Now for Quality CBSE Education</span>
+      <span>🌟 Excellence in Academics + Co-Curricular Activities — Join Us Now</span>
+      <span>👨‍🏫 Highly Qualified Faculty & Modern Teaching Methods</span>
+      <span>💻 Smart Classes & Digital Learning Enabled for All Grades</span>
+      <span>🚀 Give Your Child the Best Start — Apply Before Seats Fill!</span>
       </div>
     </div>
   </div>
@@ -1787,6 +1922,61 @@
     </div>
   </div>
 </section>
+
+<!-- ===================== MESSAGES ===================== -->
+<!-- <section id="messages" class="section-pad">
+  <div class="container">
+
+    <div class="msg-section-header reveal">
+      <div class="badge" style="background:var(--warm-100);color:var(--sun-dark);">Leadership Messages</div>
+      <h2 class="section-heading">Words from Our <span class="text-sun">Leader</span></h2>
+      <p class="section-sub">Guiding with vision, dedication, and a passion for nurturing young minds at Sun Shine Public School.</p>
+    </div>
+
+    <div class="msg-wrapper"> -->
+
+      <!-- ── MD MESSAGE ── -->
+      <!-- <div class="msg-card reveal reveal-d1">
+        <div class="msg-card-top md-top">
+          <div class="msg-photo-wrap"> -->
+            <!--
+              TO ADD MD PHOTO:
+              Replace the div below with:
+              <img class="msg-photo" src="School Photo/MD_Photo.jpg" alt="Managing Director">
+            -->
+            <!-- <div class="msg-photo-placeholder">
+              <span>👤</span>MD Photo<br>Upload Here
+            </div>
+            <span class="msg-role-badge">Managing Director</span>
+          </div>
+          <div class="msg-name">Mr. Vinod Mittal</div>
+          <div class="msg-designation">Managing Director &amp; Founder · Sun Shine Public School</div>
+        </div>
+
+        <div class="msg-body">
+          <span class="msg-quote-mark">"</span>
+          <p class="msg-text">
+            It is with immense pride and heartfelt gratitude that I welcome you to Sun Shine Public School — a place where dreams take shape and futures are built. When we founded this institution, our vision was simple yet profound: to create a school that does not merely educate but transforms. A school where every child — regardless of background — is given the tools, the encouragement, and the environment to rise to their fullest potential.
+            <br><br>
+            Over the years, we have stayed true to this vision by investing in the best faculty, modern infrastructure, and values-based education that makes our students not just academically excellent but also compassionate human beings. We believe that character is as important as curriculum, and kindness as vital as knowledge.
+            <br><br>
+            To every parent who has trusted us with your child's journey — thank you. To every student — you are the reason we do what we do. We are committed to walking beside you every step of the way.
+          </p>
+          <div class="msg-signature">
+            <div>
+              <div class="msg-sig-name">Mr. Vinod Mittal</div>
+              <div class="msg-sig-role">Managing Director, Sun Shine Public School</div>
+            </div>
+            <div class="msg-sig-icon">🌟</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div> -->
 
 <!-- ===================== ABOUT ===================== -->
 <section id="about" class="section-pad">
@@ -2510,13 +2700,13 @@
         <div class="di">🔥</div><p style="color:var(--slate-600);">Fire & Building Safety Certificates</p>
       </div>
       <div class="disc-item" style="background:var(--warm-50);border:1px solid var(--warm-200);">
-        <div class="di">👩‍🏫</div><p style="color:var(--slate-600);">Staff Qualifications & Details</p>
+        <div class="di">💧</div><p style="color:var(--slate-600);">Drinking Water/Sanitation Certificate</p>
       </div>
       <div class="disc-item" style="background:var(--warm-50);border:1px solid var(--warm-200);">
-        <div class="di">📊</div><p style="color:var(--slate-600);">Board Exam Results & Academic Data</p>
+        <div class="di">📝</div><p style="color:var(--slate-600);">District NOC</p>
       </div>
       <div class="disc-item" style="background:var(--warm-50);border:1px solid var(--warm-200);">
-        <div class="di">💰</div><p style="color:var(--slate-600);">Fee Structure & Financial Details</p>
+        <div class="di">🏛️</div><p style="color:var(--slate-600);">School Management Committee (SMC)</p>
       </div>
     </div>
 
@@ -2524,19 +2714,10 @@
     <div class="disc-card reveal">
       <div class="disc-icon">☁️</div>
       <h3>All Documents</h3>
-      <p>All mandatory public disclosure documents — including certificates, staff information, fee structure, infrastructure details, and board results — are available.</p>
+      <p>All mandatory public disclosure documents</p>
 
-      <!--
-        ============================================================
-        SCHOOL MANAGER: Replace the href below with your Google Drive
-        shared folder link. To get a shareable link:
-        1. Go to drive.google.com
-        2. Right-click your folder → Share → Anyone with the link → Copy link
-        3. Paste that link in href="YOUR_LINK_HERE" below
-        ============================================================
-      -->
-      <a class="disc-drive-btn" href="YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.28 3L1 12.27 4.08 17.7l5.27-9.13zM7.41 19H17.6l3.09-5.42H4.33zM14.31 3H9.69L4.42 12.3H19.6z"/></svg>
+      <a class="disc-drive-btn" href="/disclosure">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8" stroke="#fff" stroke-width="1.5" fill="none"/><line x1="16" y1="13" x2="8" y2="13" stroke="#fff" stroke-width="1.5"/><line x1="16" y1="17" x2="8" y2="17" stroke="#fff" stroke-width="1.5"/><polyline points="10 9 9 9 8 9" stroke="#fff" stroke-width="1.5" fill="none"/></svg>
         View All Documents
       </a>
       <p class="disc-note">Documents updated regularly. For physical copies, visit the school office during working hours (Mon–Sat, 8 AM – 4 PM).</p>
@@ -2704,7 +2885,7 @@
 </footer>
 
 <!-- ===================== JAVASCRIPT ===================== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ------ SUN RAYS ------ */
 (function(){
   const rays = document.getElementById('sunRays');
@@ -2742,12 +2923,11 @@ function closeMenu(){
 
 /* ------ REVEAL ------ */
 const reveals = document.querySelectorAll('.reveal');
-new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:.08}).observe
-  ? new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:.08}).observe(reveals[0]) && reveals.forEach(el => new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:.08}).observe(el))
-  : reveals.forEach(el => el.classList.add('visible'));
-reveals.forEach(el => {
-  new IntersectionObserver(([e]) => { if(e.isIntersecting) el.classList.add('visible'); }, {threshold:.08}).observe(el);
-});
+const revealObserver = new IntersectionObserver(
+  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0, rootMargin: '0px 0px -30px 0px' }
+);
+reveals.forEach(el => revealObserver.observe(el));
 
 /* ════════════════════════════════════════════════════════════════════
    ★  SCHOOL MANAGER — ALL PHOTOS & VIDEOS — EDIT ONLY THIS SECTION  ★
@@ -2934,6 +3114,8 @@ function renderGallery(filter){
         </div>
       </div>`;
   }).join('');
+  // Ensure the grid is always visible — it builds after the observer already ran
+  grid.classList.add('visible');
 }
 
 function filterGallery(cat, btn){
@@ -3130,7 +3312,7 @@ function closeKzPopup(){
 
 /* ------ SECTIONS LIST FOR ACTIVE NAV ------ */
 (function(){
-  const sectionIds = ['home','about','kidzone','admissions','gallery','notices','fees','facilities','disclosure','contact'];
+  const sectionIds = ['home','about','messages','kidzone','admissions','gallery','notices','fees','facilities','disclosure','contact'];
   const navLks = document.querySelectorAll('.nav-link');
   window.addEventListener('scroll', () => {
     let current = 'home';
@@ -3296,4 +3478,4 @@ function sendEnquiry(e){
 })();
 </script>
 </body>
-</html>
+</html> 
