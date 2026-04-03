@@ -226,7 +226,7 @@
     /* ===== KID ZONE ANNOUNCEMENT POPUP ===== */
     #kzPopup {
       position: fixed; inset: 0; z-index: 9999;
-      display: flex; align-items: center; justify-content: center;
+      display: none; align-items: center; justify-content: center;
       background: rgba(0,0,0,.6); backdrop-filter: blur(6px);
       animation: fadeInPop .4s ease;
       padding: 16px;
@@ -3337,7 +3337,7 @@
 </footer>
 
 <!-- ===================== JAVASCRIPT ===================== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ------ SUN RAYS ------ */
 (function(){
   const rays = document.getElementById('sunRays');
@@ -3584,7 +3584,7 @@ const noticesData = [
     type: 'Event',
     icon: '🌸',
     title: 'Malti Agarwal Smriti Chatravriti 2026 – Scholarship Open!',
-    date: '4 April 2026',
+    date: '1 April 2026',
     desc: 'Applications are now open for the Malti Agarwal Smriti Chatravriti 2026 scholarship exclusively for girl students of Classes 6th–12th. Score 90%+ and rank in the Top 5 to win 100% Tuition & Exam Fee waiver (upto ₹2 Lakhs). Registration fee: ₹49 only. Test date: 19 April 2026. Apply now!',
     tag: 'Scholarship',
     tagBg: '#fff0f7',
@@ -3704,7 +3704,7 @@ function closeSchTcModal(){
     origClose();
     // Show kidzone popup after a small delay
     setTimeout(function(){
-      kzPopup.style.display = '';
+      kzPopup.style.display = 'flex';
     }, 400);
   };
 
