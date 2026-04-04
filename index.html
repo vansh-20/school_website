@@ -653,7 +653,7 @@
     .ticker-inner { display: flex; align-items: center; }
     .ticker-label { background: var(--sun); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 14px; border-radius: 0 6px 6px 0; white-space: nowrap; flex-shrink: 0; margin-right: 20px; }
     .ticker-track { overflow: hidden; flex: 1; }
-    .ticker-items { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
+    .ticker-items { display: flex; white-space: nowrap; }
     .ticker-items span { font-size: 13px; color: rgba(255,255,255,.9); margin-right: 64px; flex-shrink: 0; }
     @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
@@ -1683,9 +1683,7 @@
       .ticker-wrap { margin-top: 60px; }
       .ticker-label { font-size: 9px; padding: 4px 10px; }
       .ticker-items span { font-size: 12px; }
-      .ticker-items     { animation: ticker 5s linear infinite; }
-      .kz-ticker-inner  { animation: ticker 9s linear infinite; }
-      .gst-ticker-inner { animation: ticker 8s linear infinite; }
+     
     }
 
     /* ===== ABOUT — mobile ===== */
@@ -3340,7 +3338,7 @@
 </footer>
 
 <!-- ===================== JAVASCRIPT ===================== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ------ SUN RAYS ------ */
 (function(){
   const rays = document.getElementById('sunRays');
@@ -3352,6 +3350,46 @@
     r.style.transform = `rotate(${i*(360/n)}deg) translateX(-50%)`;
     rays.appendChild(r);
   }
+})();
+
+/* ------ TICKER SPEED (pixel-based, same on all screens) ------ */
+(function(){
+  var PIXELS_PER_SECOND = 350; // tune this one number to change speed everywhere
+
+  function initTicker(){
+    var items = document.querySelector('.ticker-items');
+    if(!items) return;
+
+    // Clone all original children once for seamless infinite loop
+    if(!items.dataset.cloned){
+      var origChildren = Array.from(items.children);
+      origChildren.forEach(function(child){
+        items.appendChild(child.cloneNode(true));
+      });
+      items.dataset.cloned = '1';
+    }
+
+    // After cloning, scrollWidth = 2x one-copy width; animating -50% = one copy scrolled
+    var halfW = items.scrollWidth / 2;
+    var duration = halfW / PIXELS_PER_SECOND;
+
+    items.style.animationName           = 'ticker';
+    items.style.animationDuration       = duration + 's';
+    items.style.animationTimingFunction = 'linear';
+    items.style.animationIterationCount = 'infinite';
+  }
+
+  // Run after fonts/layout settle so scrollWidth is accurate
+  if(document.readyState === 'complete'){ initTicker(); }
+  else { window.addEventListener('load', initTicker); }
+
+  // Re-calculate on resize/orientation change
+  window.addEventListener('resize', function(){
+    var items = document.querySelector('.ticker-items');
+    if(!items) return;
+    var halfW = items.scrollWidth / 2;
+    items.style.animationDuration = (halfW / PIXELS_PER_SECOND) + 's';
+  });
 })();
 
 /* ------ SCROLL utils ------ */
