@@ -653,7 +653,7 @@
     .ticker-inner { display: flex; align-items: center; }
     .ticker-label { background: var(--sun); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 14px; border-radius: 0 6px 6px 0; white-space: nowrap; flex-shrink: 0; margin-right: 20px; }
     .ticker-track { overflow: hidden; flex: 1; }
-    .ticker-items { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
+    .ticker-items { display: flex; white-space: nowrap; }
     .ticker-items span { font-size: 13px; color: rgba(255,255,255,.9); margin-right: 64px; flex-shrink: 0; }
     @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
@@ -2745,6 +2745,12 @@
             onmouseout="this.style.transform='none';this.style.boxShadow='0 8px 28px rgba(245,158,11,.5)'">
             🌸 Register Now — ₹49 Only →
           </a>
+        <a href="School Doc/Exam_Pattern_Syllabus_2026.pdf" target="_blank" rel="noopener"
+            style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px 24px;border-radius:16px;background:rgba(253,230,138,.15);border:2px solid rgba(253,230,138,.6);color:#fde68a;font-size:17px;font-weight:800;text-decoration:none;box-shadow:0 8px 28px rgba(245,158,11,.2);transition:all .2s;font-family:inherit;backdrop-filter:blur(8px);"
+            onmouseover="this.style.transform='translateY(-3px)';this.style.background='rgba(253,230,138,.25)'"
+            onmouseout="this.style.transform='none';this.style.background='rgba(253,230,138,.15)'">
+            📄 Download Syllabus →
+          </a>  
           <div style="display:flex;gap:12px;">
             <button onclick="openSchTcModal()"
               style="flex:1;padding:15px 16px;border-radius:14px;border:2px solid rgba(253,230,138,.6);background:rgba(253,230,138,.1);color:#fde68a;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;backdrop-filter:blur(8px);"
@@ -3338,7 +3344,7 @@
 </footer>
 
 <!-- ===================== JAVASCRIPT ===================== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ------ SUN RAYS ------ */
 (function(){
   const rays = document.getElementById('sunRays');
@@ -3350,6 +3356,46 @@
     r.style.transform = `rotate(${i*(360/n)}deg) translateX(-50%)`;
     rays.appendChild(r);
   }
+})();
+
+/* ------ TICKER SPEED (pixel-based, same on all screens) ------ */
+(function(){
+  var PIXELS_PER_SECOND = 350; // tune this one number to change speed everywhere
+
+  function initTicker(){
+    var items = document.querySelector('.ticker-items');
+    if(!items) return;
+
+    // Clone all original children once for seamless infinite loop
+    if(!items.dataset.cloned){
+      var origChildren = Array.from(items.children);
+      origChildren.forEach(function(child){
+        items.appendChild(child.cloneNode(true));
+      });
+      items.dataset.cloned = '1';
+    }
+
+    // After cloning, scrollWidth = 2x one-copy width; animating -50% = one copy scrolled
+    var halfW = items.scrollWidth / 2;
+    var duration = halfW / PIXELS_PER_SECOND;
+
+    items.style.animationName           = 'ticker';
+    items.style.animationDuration       = duration + 's';
+    items.style.animationTimingFunction = 'linear';
+    items.style.animationIterationCount = 'infinite';
+  }
+
+  // Run after fonts/layout settle so scrollWidth is accurate
+  if(document.readyState === 'complete'){ initTicker(); }
+  else { window.addEventListener('load', initTicker); }
+
+  // Re-calculate on resize/orientation change
+  window.addEventListener('resize', function(){
+    var items = document.querySelector('.ticker-items');
+    if(!items) return;
+    var halfW = items.scrollWidth / 2;
+    items.style.animationDuration = (halfW / PIXELS_PER_SECOND) + 's';
+  });
 })();
 
 /* ------ SCROLL utils ------ */
