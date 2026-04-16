@@ -3,6 +3,7 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/disclosure", "destination": "/disclosure.html" },
+    { "source": "/fees", "destination": "/fees.html" },
     { "source": "/", "destination": "/index.html" }
   ],
   "headers": [
