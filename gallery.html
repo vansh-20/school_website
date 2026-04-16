@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="School Photo/Logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Gallery | Sun Shine Public School Najibabad</title>
+  <meta name="description" content="Explore life at Sun Shine Public School Najibabad — campus, events, sports, labs, KidZone and more. A glimpse into every golden moment." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.sunshinepublicschoolnbd.com/gallery" />
+  <meta property="og:title" content="Photo Gallery | Sun Shine Public School Najibabad" />
+  <meta property="og:description" content="Campus life, annual functions, sports, labs and celebrations — all in one place." />
+  <meta property="og:image" content="https://www.sunshinepublicschoolnbd.com/School Photo/building.png" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', system-ui, sans-serif; color: #1c1008; background: #fffbf0; overflow-x: hidden; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #fef3c7; }
+    ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 3px; }
+
+    :root {
+      --sun: #f59e0b; --sun-deep: #d97706; --sun-dark: #92400e;
+      --sun-glow: #fde68a; --cream: #fffbf0;
+      --warm-50: #fffbeb; --warm-100: #fef3c7; --warm-200: #fde68a;
+      --slate-500: #64748b; --slate-600: #475569; --slate-700: #334155; --slate-800: #1e293b;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,251,240,.97); backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(245,158,11,.15); padding: 10px 0;
+    }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; }
+    .nav-sun-icon {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #fde68a, #f59e0b);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; box-shadow: 0 0 14px rgba(245,158,11,.5); flex-shrink: 0;
+    }
+    .nav-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--sun-dark); line-height: 1.1; }
+    .nav-brand-sub { font-size: 10px; color: var(--slate-500); letter-spacing: .05em; }
+    .nav-back { display: flex; align-items: center; gap: 7px; padding: 9px 20px; border-radius: 99px; background: var(--sun); color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; border: none; font-family: inherit; transition: all .2s; text-decoration: none; white-space: nowrap; }
+    .nav-back:hover { background: var(--sun-deep); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(245,158,11,.35); }
+    .nav-back svg { width: 15px; height: 15px; stroke: #fff; fill: none; flex-shrink: 0; }
+
+    /* ===== HERO ===== */
+    .g-hero {
+      background: linear-gradient(135deg, #1c1008 0%, #451a03 35%, #7c2d12 65%, #b45309 100%);
+      padding: 72px 24px 80px; text-align: center; position: relative; overflow: hidden;
+    }
+    .g-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(245,158,11,.18), transparent);
+    }
+    /* floating orbs */
+    .orb { position: absolute; border-radius: 50%; pointer-events: none; animation: floatOrb 8s ease-in-out infinite; }
+    .orb1 { width: 220px; height: 220px; background: radial-gradient(circle, rgba(245,158,11,.12), transparent 70%); top: -60px; left: -60px; animation-delay: 0s; }
+    .orb2 { width: 160px; height: 160px; background: radial-gradient(circle, rgba(253,230,138,.1), transparent 70%); bottom: -40px; right: 10%; animation-delay: -3s; }
+    .orb3 { width: 120px; height: 120px; background: radial-gradient(circle, rgba(245,158,11,.08), transparent 70%); top: 30%; right: -40px; animation-delay: -5s; }
+    @keyframes floatOrb { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+    .g-hero-badge {
+      display: inline-flex; align-items: center; gap: 8px; position: relative; z-index: 1;
+      background: rgba(253,230,138,.15); border: 1px solid rgba(253,230,138,.3);
+      border-radius: 99px; padding: 6px 20px;
+      font-size: 11px; color: #fde68a; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: 22px;
+    }
+    .g-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700;
+      color: #fff; line-height: 1.1; margin-bottom: 18px; position: relative; z-index: 1;
+    }
+    .g-hero h1 em { color: #fde68a; font-style: normal; }
+    .g-hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.72); max-width: 580px; margin: 0 auto 36px; position: relative; z-index: 1; line-height: 1.7; }
+
+    /* stat pills in hero */
+    .g-hero-stats { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .g-stat-pill {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 99px; padding: 8px 22px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: rgba(255,255,255,.9);
+    }
+    .g-stat-pill span { font-size: 1.1rem; }
+
+    /* ===== FILTER TABS ===== */
+    .gallery-page { max-width: 1240px; margin: 0 auto; padding: 56px 24px 80px; }
+
+    .filter-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; margin-bottom: 36px; flex-wrap: wrap;
+    }
+    .filter-heading { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--slate-800); }
+    .filter-heading small { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 400; color: var(--slate-500); margin-left: 8px; }
+
+    .gtabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .gtab {
+      padding: 8px 18px; border-radius: 99px; border: 1.5px solid var(--warm-200);
+      background: #fff; color: var(--slate-700); font-size: 13px; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: all .2s; white-space: nowrap;
+    }
+    .gtab:hover { background: var(--warm-100); border-color: var(--sun); color: var(--sun-dark); }
+    .gtab.active { background: var(--sun); border-color: var(--sun); color: #fff; box-shadow: 0 4px 14px rgba(245,158,11,.35); }
+
+    /* ===== MASONRY-STYLE GRID ===== */
+    .g-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .g-item {
+      position: relative; border-radius: 16px; overflow: hidden;
+      cursor: pointer; background: var(--warm-200);
+      aspect-ratio: 1 / 1;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .g-item.wide { grid-column: span 2; aspect-ratio: 2 / 1; }
+    .g-item.tall { grid-row: span 2; aspect-ratio: 1 / 2; }
+    .g-item:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.22); }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+    .g-item:hover img { transform: scale(1.06); }
+
+    /* gradient placeholder */
+    .g-item.placeholder { display: flex; align-items: center; justify-content: center; cursor: default; }
+    .g-item.placeholder:hover { transform: none; box-shadow: none; }
+
+    /* overlay */
+    .g-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 55%);
+      opacity: 0; transition: opacity .3s;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 16px;
+    }
+    .g-item:hover .g-overlay { opacity: 1; }
+    .g-cap { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.4; }
+    .g-cat-tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; background: rgba(245,158,11,.85); color: #fff;
+      padding: 3px 10px; border-radius: 99px; margin-bottom: 5px; align-self: flex-start;
+    }
+    .g-expand {
+      position: absolute; top: 12px; right: 12px;
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(255,255,255,.18); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .3s; border: 1px solid rgba(255,255,255,.25);
+    }
+    .g-item:hover .g-expand { opacity: 1; }
+    .g-expand svg { width: 14px; height: 14px; stroke: #fff; fill: none; }
+
+    /* empty state */
+    .g-empty { grid-column: span 4; text-align: center; padding: 60px 20px; color: var(--slate-500); }
+    .g-empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .g-empty p { font-size: 15px; }
+
+    /* photo count badge */
+    .count-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--warm-100); border: 1px solid var(--warm-200);
+      border-radius: 99px; padding: 5px 14px; font-size: 12px; font-weight: 600;
+      color: var(--sun-dark); margin-bottom: 32px;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    #lb {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.93); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center;
+    }
+    #lb.open { display: flex; }
+    .lb-close {
+      position: absolute; top: 20px; right: 24px;
+      width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.1); color: #fff; font-size: 20px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .2s; z-index: 2;
+    }
+    .lb-close:hover { background: rgba(255,255,255,.25); }
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 50px; height: 50px; border-radius: 50%; border: 2px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.1); color: #fff; font-size: 26px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .2s; z-index: 2;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,.22); }
+    .lb-prev { left: 20px; } .lb-next { right: 20px; }
+    .lb-inner { max-width: 90vw; max-height: 85vh; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    #lbImg { max-width: 90vw; max-height: 78vh; object-fit: contain; border-radius: 12px; box-shadow: 0 32px 80px rgba(0,0,0,.6); }
+    .lb-info { text-align: center; }
+    .lb-cap { font-size: 15px; font-weight: 600; color: #fff; }
+    .lb-counter { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 4px; }
+
+    /* ===== CTA STRIP ===== */
+    .g-cta-strip {
+      margin-top: 64px;
+      background: linear-gradient(135deg, #7c2d12, #b45309);
+      border-radius: 24px; padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+      box-shadow: 0 20px 60px rgba(124,45,18,.3);
+      position: relative; overflow: hidden;
+    }
+    .g-cta-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .g-cta-left { position: relative; z-index: 1; }
+    .g-cta-left h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .g-cta-left p { font-size: 14px; color: rgba(255,255,255,.78); }
+    .g-cta-btns { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .g-cta-main { padding: 13px 28px; border-radius: 99px; background: #fde68a; color: #7c2d12; font-size: 14px; font-weight: 800; transition: all .2s; white-space: nowrap; }
+    .g-cta-main:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+    .g-cta-ghost { padding: 13px 28px; border-radius: 99px; border: 2px solid rgba(255,255,255,.35); color: #fff; font-size: 14px; font-weight: 700; transition: all .2s; white-space: nowrap; }
+    .g-cta-ghost:hover { background: rgba(255,255,255,.12); }
+
+    /* ===== FOOTER ===== */
+    .g-footer { background: #1c1008; color: rgba(255,255,255,.55); text-align: center; padding: 28px 24px; font-size: 13px; }
+    .g-footer a { color: var(--sun); font-weight: 600; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .g-grid { grid-template-columns: repeat(3, 1fr); }
+      .g-empty { grid-column: span 3; }
+    }
+    @media (max-width: 640px) {
+      .g-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .g-item.wide { grid-column: span 2; }
+      .g-item.tall { grid-row: span 1; aspect-ratio: 1/1; }
+      .g-empty { grid-column: span 2; }
+      .filter-bar { flex-direction: column; align-items: flex-start; }
+      .g-cta-strip { padding: 28px 24px; }
+      .g-hero h1 { font-size: 2.2rem; }
+      .lb-prev { left: 8px; } .lb-next { right: 8px; }
+    }
+    @media (max-width: 420px) {
+      .g-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .g-item.wide { aspect-ratio: 16/9; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/">
+      <div class="nav-sun-icon">☀️</div>
+      <div>
+        <div class="nav-brand-name">Sun Shine Public School</div>
+        <div class="nav-brand-sub">CBSE · Najibabad, Bijnor</div>
+      </div>
+    </a>
+    <a class="nav-back" href="/">
+      <svg viewBox="0 0 16 16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="10 4 6 8 10 12"/></svg>
+      Back to Home
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="g-hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="g-hero-badge">📸 &nbsp; School Photo Gallery</div>
+  <h1>Every Moment<br><em>Tells Our Story</em></h1>
+  <p class="g-hero-sub">
+    From science labs buzzing with curiosity to fields echoing with laughter — 
+    Sun Shine Public School is where memories are made, talents are discovered, 
+    and futures are shaped. Scroll through and feel the spirit.
+  </p>
+  <div class="g-hero-stats">
+    <div class="g-stat-pill"><span>🏫</span> Beautiful Campus</div>
+    <div class="g-stat-pill"><span>🎭</span> Grand Annual Events</div>
+    <div class="g-stat-pill"><span>🔬</span> Modern Labs</div>
+    <div class="g-stat-pill"><span>🏏</span> Sports & Athletics</div>
+  </div>
+</div>
+
+<!-- GALLERY PAGE BODY -->
+<div class="gallery-page">
+
+  <div class="filter-bar">
+    <div class="filter-heading">
+      Browse Photos
+      <small id="photoCountText">Loading…</small>
+    </div>
+    <div class="gtabs" id="gtabs">
+      <button class="gtab active" onclick="filterGallery('All', this)">🌟 All Photos</button>
+      <button class="gtab" onclick="filterGallery('Campus', this)">🏫 Campus</button>
+      <button class="gtab" onclick="filterGallery('Events', this)">🎭 Events</button>
+      <button class="gtab" onclick="filterGallery('Kidzone', this)">🎨 KidZone</button>
+      <button class="gtab" onclick="filterGallery('Labs', this)">🔬 Labs</button>
+      <button class="gtab" onclick="filterGallery('Sports', this)">🏏 Sports</button>
+      <button class="gtab" onclick="filterGallery('Staff', this)">👨‍🏫 Faculty</button>
+    </div>
+  </div>
+
+  <div class="g-grid" id="gGrid"></div>
+
+  <!-- CTA -->
+  <div class="g-cta-strip">
+    <div class="g-cta-left">
+      <h3>Like What You See? Join Our Family ☀</h3>
+      <p>Admissions open 2026–27 · Nursery to Class XII · No Admission Fee · GPS-tracked transport</p>
+    </div>
+    <div class="g-cta-btns">
+      <a class="g-cta-main" href="/#admissions">Apply for Admission</a>
+      <a class="g-cta-ghost" href="tel:+918279856292">📞 Call Us</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="g-footer">
+  <p>© 2026 Sun Shine Public School · Fazalpur Tabela, NH-74, Najibabad, Bijnor UP 246763 · 📞 +91-8279856292</p>
+  <p style="margin-top:6px;"><a href="/">← Back to Home</a> &nbsp;·&nbsp; <a href="/fees">Fee Structure</a> &nbsp;·&nbsp; <a href="/disclosure">Disclosure</a></p>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-close" id="lbClose" title="Close">&#x2715;</button>
+  <button class="lb-nav lb-prev" id="lbPrev">&#x2039;</button>
+  <button class="lb-nav lb-next" id="lbNext">&#x203a;</button>
+  <div class="lb-inner">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-info">
+      <div class="lb-cap" id="lbCap"></div>
+      <div class="lb-counter" id="lbCounter"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────
+//  GALLERY PHOTOS — same data as main site
+//  TO ADD: copy any line and add a new entry.
+//  TO REMOVE: delete that line or set src: ''
+// ─────────────────────────────────────────────────
+const gallerySlots = [
+  {src:'School Photo/IMG_5798.png',                    cat:'Campus',  label:'School Main Building',                    cols:2},
+  {src:'School Photo/building.png',                    cat:'Campus',  label:'School Main Building',                    cols:2},
+  {src:'School Photo/IMG_5830.JPG.jpeg',               cat:'Campus',  label:'Campus View',                             cols:2},
+  {src:'School Photo/IMG_5834.JPG.jpeg',               cat:'Campus',  label:'Campus View',                             cols:2},
+
+  {src:'School Photo/IMG_5684.JPG.jpeg',               cat:'Kidzone', label:'KidZone Room',                            cols:2},
+  {src:'School Photo/IMG_5808.JPG.jpeg',               cat:'Kidzone', label:'KidZone Room',                            cols:2},
+  {src:'School Photo/IMG_5813.JPG.jpeg',               cat:'Kidzone', label:'KidZone Room',                            cols:2},
+  {src:'School Photo/IMG_5815.JPG.jpeg',               cat:'Kidzone', label:'KidZone Room',                            cols:2},
+  {src:'School Photo/IMG_5844.JPG.jpeg',               cat:'Kidzone', label:'KidZone Room',                            cols:2},
+  {src:'School Photo/IMG_5843.JPG.jpeg',               cat:'Kidzone', label:'KidZone Room',                            cols:2},
+
+  {src:'School Photo/IMG-20260323-WA0036.jpg.jpeg',    cat:'Events',  label:'Paying Respect to Goddess Saraswati',     cols:2},
+  {src:'School Photo/IMG-20260323-WA0082.jpg.jpeg',    cat:'Events',  label:'Guest of Honour',                         cols:2},
+  {src:'School Photo/DSC_7910.JPG',                    cat:'Events',  label:'Guest of Honour',                         cols:2},
+  {src:'School Photo/IMG-20260323-WA0033.jpg.jpeg',    cat:'Events',  label:'Dance Performance',                       cols:2},
+  {src:'School Photo/DSC_7926.JPG',                    cat:'Events',  label:'Dance Performance',                       cols:2},
+  {src:'School Photo/DSC_8054.JPG',                    cat:'Events',  label:'Dance Performance',                       cols:2},
+  {src:'School Photo/DSC_7994.JPG',                    cat:'Events',  label:'Dance Performance',                       cols:2},
+  {src:'School Photo/DSC_8082.JPG',                    cat:'Events',  label:'Dance Performance',                       cols:2},
+  {src:'School Photo/DSC_7916.JPG',                    cat:'Events',  label:'Dance Performance',                       cols:2},
+  {src:'School Photo/DSC_8084.JPG',                    cat:'Events',  label:'Dance Performance',                       cols:2},
+  {src:'School Photo/DSC_8115.JPG',                    cat:'Events',  label:'Bhangra Performance',                     cols:2},
+  {src:'School Photo/DSC_7960.JPG',                    cat:'Events',  label:'Taekwondo Performance',                   cols:2},
+  {src:'School Photo/DSC_7965.JPG',                    cat:'Events',  label:'Taekwondo Performance',                   cols:2},
+  {src:'School Photo/DSC_8145.JPG',                    cat:'Events',  label:'Cricket Tournament Prize Distribution',   cols:2},
+  {src:'School Photo/DSC_8147.JPG',                    cat:'Events',  label:'Cricket Tournament Prize Distribution',   cols:2},
+
+
+
+  {src:'School Photo/IMG_5852.JPG.jpeg',               cat:'Labs',    label:'Biology Lab',                             cols:2},
+  {src:'School Photo/IMG_5851.JPG.jpeg',               cat:'Labs',    label:'Biology Lab',                             cols:2},
+  {src:'School Photo/IMG_5850.JPG.jpeg',               cat:'Labs',    label:'Physics Lab',                             cols:2},
+  {src:'School Photo/IMG_5848.JPG.jpeg',               cat:'Labs',    label:'Physics Lab',                             cols:2},
+  {src:'School Photo/IMG_5854.JPG.jpeg',               cat:'Labs',    label:'Chemistry Lab',                           cols:2},
+  {src:'School Photo/IMG_5857.JPG.jpeg',               cat:'Labs',    label:'Computer Lab',                            cols:2},
+
+  {src:'School Photo/IMG_5835.JPG.jpg',                cat:'Sports',  label:'School Ground',                           cols:2},
+  {src:'School Photo/IMG_5837.JPG.jpeg',               cat:'Sports',  label:'School Ground',                           cols:2},
+
+  {src:'School Photo/IMG_5704.JPG.jpeg',               cat:'Staff',   label:'Faculty Members',                         cols:2},
+];
+
+// colour palette per category (for placeholder tiles)
+const palettes = {
+  Campus:  ['#92400e','#b45309'],
+  Events:  ['#1e3a5f','#1d4ed8'],
+  Kidzone: ['#312e81','#6d28d9'],
+  Labs:    ['#0c4a6e','#0284c7'],
+  Sports:  ['#064e3b','#059669'],
+  Staff:   ['#4a1d96','#7c3aed'],
+};
+
+// ─── RENDER ───
+let lbItems = [], lbCur = 0;
+
+function renderGallery(filter) {
+  const grid  = document.getElementById('gGrid');
+  const count = document.getElementById('photoCountText');
+  const items = filter === 'All' ? gallerySlots : gallerySlots.filter(g => g.cat === filter);
+  const filled = items.filter(i => i.src && i.src !== '');
+
+  count.textContent = `${filled.length} photo${filled.length !== 1 ? 's' : ''}`;
+
+  if (items.length === 0) {
+    grid.innerHTML = `<div class="g-empty"><div class="g-empty-icon">📷</div><p>No photos in this category yet. Check back soon!</p></div>`;
+    return;
+  }
+
+  lbItems = filled.map(i => ({ src: i.src, label: i.label, cat: i.cat }));
+
+  grid.innerHTML = items.map((item, i) => {
+    const hasPhoto = item.src && item.src !== '';
+    const pal = palettes[item.cat] || ['#451a03','#7c2d12'];
+    const wideClass = item.cols === 2 ? ' wide' : '';
+    const lbIdx = hasPhoto ? lbItems.findIndex(l => l.src === item.src) : -1;
+
+    if (hasPhoto) {
+      return `
+        <div class="g-item${wideClass}" onclick="openLb(${lbIdx})" title="${item.label}">
+          <img src="${item.src}" alt="${item.label}" loading="lazy">
+          <div class="g-overlay">
+            <span class="g-cat-tag">${item.cat}</span>
+            <div class="g-cap">${item.label}</div>
+          </div>
+          <div class="g-expand">
+            <svg viewBox="0 0 16 16" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="10 2 14 2 14 6"/><polyline points="6 14 2 14 2 10"/>
+              <line x1="14" y1="2" x2="9" y2="7"/><line x1="2" y1="14" x2="7" y2="9"/>
+            </svg>
+          </div>
+        </div>`;
+    } else {
+      return `
+        <div class="g-item placeholder${wideClass}" style="background:linear-gradient(145deg,${pal[0]},${pal[1]})">
+          <div style="text-align:center;color:rgba(255,255,255,.6);padding:20px;">
+            <div style="font-size:2rem;margin-bottom:8px;">📸</div>
+            <div style="font-size:12px;font-weight:600;">${item.label}</div>
+            <div style="font-size:10px;margin-top:4px;text-transform:uppercase;letter-spacing:.08em;">${item.cat}</div>
+          </div>
+        </div>`;
+    }
+  }).join('');
+}
+
+function filterGallery(cat, btn) {
+  document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGallery(cat);
+}
+
+renderGallery('All');
+
+// ─── LIGHTBOX ───
+function openLb(idx) {
+  lbCur = idx;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  showLb();
+}
+function closeLb() {
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function showLb() {
+  const it = lbItems[lbCur];
+  document.getElementById('lbImg').src    = it.src;
+  document.getElementById('lbImg').alt    = it.label;
+  document.getElementById('lbCap').textContent     = it.label;
+  document.getElementById('lbCounter').textContent = `${lbCur + 1} / ${lbItems.length}`;
+}
+function prevLb() { lbCur = (lbCur - 1 + lbItems.length) % lbItems.length; showLb(); }
+function nextLb() { lbCur = (lbCur + 1) % lbItems.length; showLb(); }
+
+document.getElementById('lbClose').addEventListener('click', closeLb);
+document.getElementById('lbPrev').addEventListener('click', prevLb);
+document.getElementById('lbNext').addEventListener('click', nextLb);
+document.getElementById('lb').addEventListener('click', function(e){ if(e.target === this) closeLb(); });
+document.addEventListener('keydown', function(e){
+  if (!document.getElementById('lb').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') prevLb();
+  if (e.key === 'ArrowRight') nextLb();
+});
+// touch swipe
+let tsX = null;
+document.getElementById('lb').addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, {passive:true});
+document.getElementById('lb').addEventListener('touchend', e => {
+  if (tsX === null) return;
+  const dx = e.changedTouches[0].clientX - tsX;
+  if (Math.abs(dx) > 50) { dx < 0 ? nextLb() : prevLb(); }
+  tsX = null;
+});
+</script>
+
+</body>
+</html>

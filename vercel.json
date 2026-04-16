@@ -4,6 +4,7 @@
   "rewrites": [
     { "source": "/disclosure", "destination": "/disclosure.html" },
     { "source": "/fees", "destination": "/fees.html" },
+    { "source": "/gallery", "destination": "/gallery.html" },
     { "source": "/", "destination": "/index.html" }
   ],
   "headers": [
